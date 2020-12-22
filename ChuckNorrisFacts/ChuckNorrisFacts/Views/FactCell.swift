@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class FactCell: UITableViewCell {
-    // MARK: Properties
+    // MARK: Views
     var icon: UIImageView = {
         let view = UIImageView(image: UIImage(named: "chuckNorris"))
         view.contentMode = .scaleAspectFit

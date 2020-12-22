@@ -7,16 +7,21 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
 
 class InitialViewController: UIViewController {
     let bag = DisposeBag()
     let tableView: FactsListTableView = { .init() }()
-    var cellHeight = BehaviorRelay(value: UITableView.automaticDimension)
+    lazy var searchBar = FactSearchBar()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
+        
+        let cancelButton = UIButton()
+        cancelButton.setTitle("Cancel", for: .normal)
+        
+        navigationItem.leftBarButtonItem = .init(customView: searchBar)
+        navigationItem.rightBarButtonItem = .init(customView: cancelButton)
         
         ChuckNorrisAPI.shared
             .searchFact("ant")
@@ -25,7 +30,6 @@ class InitialViewController: UIViewController {
                 let indexPath = IndexPath(row: index, section: 0)
                 let cell = tableView.dequeueReusableCell(withIdentifier: "factCell", for: indexPath) as! FactCell
                 cell.valueText.text = element.value
-//                self.cellHeight.accept(cell.valueText.frame.height)
                 cell.share.setImage(UIImage(systemName: "check"), for: .normal)
                 cell.category.text = "Uncategorized"
                 return cell
