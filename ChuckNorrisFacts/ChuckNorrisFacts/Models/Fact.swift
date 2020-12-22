@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Fact: Codable {
+class Fact: Codable {
     let categories: [String]
     let createdAt: String
     let iconURL: String
@@ -22,5 +22,23 @@ struct Fact: Codable {
         case id
         case updatedAt = "updated_at"
         case url, value
+    }
+    
+    init(
+        categories: [String],
+        createdAt: String,
+        iconURL: String,
+        id: String,
+        updatedAt: String,
+        url: String,
+        value: String
+    ) {
+        self.categories = categories
+        self.createdAt = createdAt
+        self.iconURL = iconURL
+        self.id = id
+        self.updatedAt = updatedAt
+        self.url = url
+        self.value = value
     }
 }

@@ -7,9 +7,14 @@
 
 import Foundation
 
-struct Search: Codable {
+class Search: Codable {
     let total: Int
     let result: [Fact]
+    
+    init(total: Int, result: [Fact]) {
+        self.total = total
+        self.result = result
+    }
 }
 
 extension Search {
