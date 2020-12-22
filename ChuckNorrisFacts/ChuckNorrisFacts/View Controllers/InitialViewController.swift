@@ -10,46 +10,49 @@ import RxSwift
 
 class InitialViewController: UIViewController {
     let bag = DisposeBag()
-    let tableView: FactsListTableView = { .init() }()
-    lazy var searchBar = FactSearchBar()
-
+    let tableView = FactsListTableView()
+    var searchBar = FactSearchBar()
+    let viewModel: TextSearchViewModel
+    
+    init(viewModel: TextSearchViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
         
-        let cancelButton = UIButton()
-        cancelButton.setTitle("Cancel", for: .normal)
-        
+        searchBarSetup()
+        bindViewModel()
+    }
+    
+    private func searchBarSetup() {
         navigationItem.leftBarButtonItem = .init(customView: searchBar)
-        navigationItem.rightBarButtonItem = .init(customView: cancelButton)
-        
         searchBar.rx.searchButtonClicked
-            .map { self.searchBar.text ?? "" }
+            .map { [weak self] in self?.searchBar.text ?? "" }
             .filter { !$0.isEmpty }
-            .asDriver(onErrorJustReturn: "")
-            .drive(onNext: { [weak self] text in
-                guard let self = self else { return }
-                
-                self.tableView.dataSource = nil
-                ChuckNorrisAPI.shared.searchFact(text)
-                    .map { $0.result }
-                    .bind(to: self.tableView.rx.items) { (tableView: UITableView, index: Int, element: Fact) in
-                        let indexPath = IndexPath(row: index, section: 0)
-                        let cell = tableView.dequeueReusableCell(withIdentifier: "factCell", for: indexPath) as! FactCell
-                        cell.valueText.text = element.value
-                        cell.share.setImage(UIImage(systemName: "check"), for: .normal)
-                        cell.category.text = "Uncategorized"
-                        return cell
-                    }
-                    .disposed(by: self.bag)
-            })
+            .subscribe(onNext: { [weak self] in self?.viewModel.searchFacts($0) })
             .disposed(by: bag)
     }
     
-    override func loadView() {
-        let view = UIView()
-        view.backgroundColor = .orange
-        
-        self.view = view
+    private func bindViewModel() {
+        viewModel.facts
+            .bind(to: self.tableView.rx.items) { (tableView: UITableView, index: Int, element: Fact) in
+                let indexPath = IndexPath(row: index, section: 0)
+                let cell = tableView.dequeueReusableCell(withIdentifier: "factCell", for: indexPath) as! FactCell
+                cell.valueText.text = element.value
+                cell.share.setImage(UIImage(systemName: "check"), for: .normal)
+                cell.category.text = element.categories.first ?? "Uncategorized"
+                return cell
+            }
+            .disposed(by: self.bag)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
+
+
+
