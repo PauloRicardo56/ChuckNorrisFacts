@@ -42,3 +42,14 @@ class Fact: Codable {
         self.value = value
     }
 }
+
+extension Fact {
+    static var empty = Fact(
+        categories: [],
+        createdAt: "",
+        iconURL: "",
+        id: "",
+        updatedAt: "",
+        url: "",
+        value: "")
+}
