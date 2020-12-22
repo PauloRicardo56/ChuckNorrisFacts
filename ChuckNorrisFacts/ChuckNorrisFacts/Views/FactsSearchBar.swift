@@ -27,9 +27,8 @@ class FactSearchBar: UISearchBar {
             .map { true }
         let endEditing: Observable<Bool> = rx.textDidEndEditing
             .map { false }
-        let source = Observable.of(beginEditing, endEditing)
         
-        source.merge()
+        Observable.merge(beginEditing, endEditing)
             .startWith(false)
             .subscribe(rx.showsCancelButton)
             .disposed(by: bag)
