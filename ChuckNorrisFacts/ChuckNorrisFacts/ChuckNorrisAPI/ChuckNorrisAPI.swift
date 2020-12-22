@@ -23,6 +23,11 @@ class ChuckNorrisAPI {
             .map { try JSONDecoder().decode(Search.self, from: $0) }
     }
     
+    func randomFact() -> Observable<Fact> {
+        return buildRequest(pathComponent: "random", params: [])
+            .map { try JSONDecoder().decode(Fact.self, from: $0) }
+    }
+    
     /// Método de construção da request utilizando RxCococa
     private func buildRequest(
         method: String = "GET",

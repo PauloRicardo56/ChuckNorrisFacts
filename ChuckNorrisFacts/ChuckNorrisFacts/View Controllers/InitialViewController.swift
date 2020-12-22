@@ -36,6 +36,7 @@ class InitialViewController: UIViewController {
             .disposed(by: bag)
     }
     
+    // MARK: TableView DataSource
     private func bindViewModel() {
         viewModel.facts
             .bind(to: self.tableView.rx.items) { (tableView: UITableView, index: Int, element: Fact) in

@@ -119,7 +119,6 @@ extension FactCell: ViewCodable {
     }
     
     private func setupRightStack() {
-        innerStack.backgroundColor = .red
         innerStack.addArrangedSubview(valueText)
         setupBottomViews()
         backgroundStack.addArrangedSubview(innerStack)

@@ -24,6 +24,7 @@
 		23EA8215259258A200DF4B09 /* FactsSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA8214259258A200DF4B09 /* FactsSearchBar.swift */; };
 		23EA821A25926E4C00DF4B09 /* TextSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA821925926E4C00DF4B09 /* TextSearchViewModel.swift */; };
 		23EA821F2592802E00DF4B09 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA821E2592802E00DF4B09 /* ViewModel.swift */; };
+		23EA82252592B2DD00DF4B09 /* ChuckNorrisAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA82242592B2DD00DF4B09 /* ChuckNorrisAPITests.swift */; };
 		9ABA59A2775DC40168585DEA /* Pods_ChuckNorrisFacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EFE2467932EC3F90F42C895 /* Pods_ChuckNorrisFacts.framework */; };
 		F8AE9F813D665C022496FF0F /* Pods_ChuckNorrisFactsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 869A5A0BDE17F64C604159FB /* Pods_ChuckNorrisFactsTests.framework */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,7 @@
 		23EA8214259258A200DF4B09 /* FactsSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsSearchBar.swift; sourceTree = "<group>"; };
 		23EA821925926E4C00DF4B09 /* TextSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSearchViewModel.swift; sourceTree = "<group>"; };
 		23EA821E2592802E00DF4B09 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		23EA82242592B2DD00DF4B09 /* ChuckNorrisAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuckNorrisAPITests.swift; sourceTree = "<group>"; };
 		5F694B12AA8E8B26ACEFFA03 /* Pods-ChuckNorrisFacts-ChuckNorrisFactsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuckNorrisFacts-ChuckNorrisFactsUITests.debug.xcconfig"; path = "Target Support Files/Pods-ChuckNorrisFacts-ChuckNorrisFactsUITests/Pods-ChuckNorrisFacts-ChuckNorrisFactsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A85897DFA177C325C348B54 /* Pods_ChuckNorrisFacts_ChuckNorrisFactsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChuckNorrisFacts_ChuckNorrisFactsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F12900E97C05FF6203F0CD7 /* Pods-ChuckNorrisFacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuckNorrisFacts.release.xcconfig"; path = "Target Support Files/Pods-ChuckNorrisFacts/Pods-ChuckNorrisFacts.release.xcconfig"; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			children = (
 				23238D9425910EAE00DB3FC0 /* ChuckNorrisFactsTests.swift */,
 				23238D9625910EAE00DB3FC0 /* Info.plist */,
+				23EA82242592B2DD00DF4B09 /* ChuckNorrisAPITests.swift */,
 			);
 			path = ChuckNorrisFactsTests;
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23EA82252592B2DD00DF4B09 /* ChuckNorrisAPITests.swift in Sources */,
 				23238D9525910EAE00DB3FC0 /* ChuckNorrisFactsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
