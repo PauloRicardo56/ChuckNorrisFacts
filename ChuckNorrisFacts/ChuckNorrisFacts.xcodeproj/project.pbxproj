@@ -15,7 +15,6 @@
 		23238D8225910EAB00DB3FC0 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23238D8125910EAB00DB3FC0 /* InitialViewController.swift */; };
 		23238D8725910EAD00DB3FC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23238D8625910EAD00DB3FC0 /* Assets.xcassets */; };
 		23238D8A25910EAD00DB3FC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23238D8825910EAD00DB3FC0 /* LaunchScreen.storyboard */; };
-		23238D9525910EAE00DB3FC0 /* ChuckNorrisFactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23238D9425910EAE00DB3FC0 /* ChuckNorrisFactsTests.swift */; };
 		23238DA025910EAE00DB3FC0 /* ChuckNorrisFactsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23238D9F25910EAE00DB3FC0 /* ChuckNorrisFactsUITests.swift */; };
 		23238DB825911D8700DB3FC0 /* ChuckNorrisAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23238DB725911D8700DB3FC0 /* ChuckNorrisAPI.swift */; };
 		23EA81F72591552A00DF4B09 /* FactsListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA81F62591552A00DF4B09 /* FactsListTableView.swift */; };
@@ -25,6 +24,7 @@
 		23EA821A25926E4C00DF4B09 /* TextSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA821925926E4C00DF4B09 /* TextSearchViewModel.swift */; };
 		23EA821F2592802E00DF4B09 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA821E2592802E00DF4B09 /* ViewModel.swift */; };
 		23EA82252592B2DD00DF4B09 /* ChuckNorrisAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA82242592B2DD00DF4B09 /* ChuckNorrisAPITests.swift */; };
+		23EA82352592B85800DF4B09 /* TextSearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA82342592B85800DF4B09 /* TextSearchViewModelTests.swift */; };
 		9ABA59A2775DC40168585DEA /* Pods_ChuckNorrisFacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EFE2467932EC3F90F42C895 /* Pods_ChuckNorrisFacts.framework */; };
 		F8AE9F813D665C022496FF0F /* Pods_ChuckNorrisFactsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 869A5A0BDE17F64C604159FB /* Pods_ChuckNorrisFactsTests.framework */; };
 /* End PBXBuildFile section */
@@ -58,7 +58,6 @@
 		23238D8925910EAD00DB3FC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		23238D8B25910EAD00DB3FC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23238D9025910EAE00DB3FC0 /* ChuckNorrisFactsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChuckNorrisFactsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		23238D9425910EAE00DB3FC0 /* ChuckNorrisFactsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuckNorrisFactsTests.swift; sourceTree = "<group>"; };
 		23238D9625910EAE00DB3FC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23238D9B25910EAE00DB3FC0 /* ChuckNorrisFactsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChuckNorrisFactsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		23238D9F25910EAE00DB3FC0 /* ChuckNorrisFactsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuckNorrisFactsUITests.swift; sourceTree = "<group>"; };
@@ -71,6 +70,7 @@
 		23EA821925926E4C00DF4B09 /* TextSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSearchViewModel.swift; sourceTree = "<group>"; };
 		23EA821E2592802E00DF4B09 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		23EA82242592B2DD00DF4B09 /* ChuckNorrisAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuckNorrisAPITests.swift; sourceTree = "<group>"; };
+		23EA82342592B85800DF4B09 /* TextSearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSearchViewModelTests.swift; sourceTree = "<group>"; };
 		5F694B12AA8E8B26ACEFFA03 /* Pods-ChuckNorrisFacts-ChuckNorrisFactsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuckNorrisFacts-ChuckNorrisFactsUITests.debug.xcconfig"; path = "Target Support Files/Pods-ChuckNorrisFacts-ChuckNorrisFactsUITests/Pods-ChuckNorrisFacts-ChuckNorrisFactsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A85897DFA177C325C348B54 /* Pods_ChuckNorrisFacts_ChuckNorrisFactsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChuckNorrisFacts_ChuckNorrisFactsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F12900E97C05FF6203F0CD7 /* Pods-ChuckNorrisFacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuckNorrisFacts.release.xcconfig"; path = "Target Support Files/Pods-ChuckNorrisFacts/Pods-ChuckNorrisFacts.release.xcconfig"; sourceTree = "<group>"; };
@@ -200,9 +200,9 @@
 		23238D9325910EAE00DB3FC0 /* ChuckNorrisFactsTests */ = {
 			isa = PBXGroup;
 			children = (
-				23238D9425910EAE00DB3FC0 /* ChuckNorrisFactsTests.swift */,
-				23238D9625910EAE00DB3FC0 /* Info.plist */,
 				23EA82242592B2DD00DF4B09 /* ChuckNorrisAPITests.swift */,
+				23EA82342592B85800DF4B09 /* TextSearchViewModelTests.swift */,
+				23238D9625910EAE00DB3FC0 /* Info.plist */,
 			);
 			path = ChuckNorrisFactsTests;
 			sourceTree = "<group>";
@@ -518,7 +518,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23EA82252592B2DD00DF4B09 /* ChuckNorrisAPITests.swift in Sources */,
-				23238D9525910EAE00DB3FC0 /* ChuckNorrisFactsTests.swift in Sources */,
+				23EA82352592B85800DF4B09 /* TextSearchViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

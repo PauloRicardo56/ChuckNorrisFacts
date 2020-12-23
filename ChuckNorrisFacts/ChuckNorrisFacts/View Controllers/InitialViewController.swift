@@ -44,7 +44,7 @@ class InitialViewController: UIViewController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "factCell", for: indexPath) as! FactCell
                 cell.valueText.text = element.value
                 cell.share.setImage(UIImage(systemName: "check"), for: .normal)
-                cell.category.text = element.categories.first ?? "Uncategorized"
+                cell.category.text = element.categories.first ?? "uncategorized"
                 return cell
             }
             .disposed(by: self.bag)

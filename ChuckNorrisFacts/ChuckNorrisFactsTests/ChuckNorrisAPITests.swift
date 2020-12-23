@@ -7,7 +7,6 @@
 
 import Foundation
 import XCTest
-import RxTest
 import RxBlocking
 @testable import ChuckNorrisFacts
 
@@ -29,7 +28,7 @@ class ChuckNorrisAPITests: XCTestCase {
             .toBlocking()
             .first()
             .map { $0.total }
-        
+            
         XCTAssertTrue(try XCTUnwrap(textSearchResult) > 0)
     }
     
@@ -37,6 +36,7 @@ class ChuckNorrisAPITests: XCTestCase {
         let randomCount = try? sut.randomFact()
             .toBlocking()
             .first()
+        
         XCTAssertNotNil(randomCount?.value)
     }
 }

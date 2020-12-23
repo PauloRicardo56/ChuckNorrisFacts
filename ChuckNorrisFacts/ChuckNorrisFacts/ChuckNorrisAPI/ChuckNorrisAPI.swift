@@ -28,6 +28,7 @@ class ChuckNorrisAPI {
             .map { try JSONDecoder().decode(Fact.self, from: $0) }
     }
     
+    // MARK: Private methods
     /// Método de construção da request utilizando RxCococa
     private func buildRequest(
         method: String = "GET",
