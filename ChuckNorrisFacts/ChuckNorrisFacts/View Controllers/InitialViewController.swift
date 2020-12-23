@@ -13,6 +13,7 @@ class InitialViewController: UIViewController {
     let tableView = FactsListTableView()
     var searchBar = FactSearchBar()
     let viewModel: TextSearchViewModel
+    var coordinator: AppCoordinator?
     
     init(viewModel: TextSearchViewModel) {
         self.viewModel = viewModel
@@ -45,13 +46,8 @@ class InitialViewController: UIViewController {
                 cell.valueText.text = element.value
                 cell.share.setImage(UIImage(systemName: "check"), for: .normal)
                 cell.share.rx.tap
-                    .subscribe(onNext: {
-                        self.navigationController?.present(
-                            ShareFactViewController(
-                                activityItems: [URL(string: element.url)!],
-                                applicationActivities: nil),
-                            animated: true, completion: nil)
-                    })
+                    .asSignal()
+                    .emit(onNext: { [weak self] in self?.coordinator?.share(url: element.url) })
                     .disposed(by: cell.bag)
                 cell.category.text = element.categories.first ?? "uncategorized"
                 return cell

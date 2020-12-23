@@ -26,6 +26,8 @@
 		23EA82252592B2DD00DF4B09 /* ChuckNorrisAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA82242592B2DD00DF4B09 /* ChuckNorrisAPITests.swift */; };
 		23EA82352592B85800DF4B09 /* TextSearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA82342592B85800DF4B09 /* TextSearchViewModelTests.swift */; };
 		23EA82402592D8C100DF4B09 /* ShareFactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA823F2592D8C100DF4B09 /* ShareFactViewController.swift */; };
+		23EA82482592F11000DF4B09 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA82472592F10F00DF4B09 /* AppCoordinator.swift */; };
+		23EA82502592F52000DF4B09 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA824F2592F51F00DF4B09 /* Coordinator.swift */; };
 		9ABA59A2775DC40168585DEA /* Pods_ChuckNorrisFacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EFE2467932EC3F90F42C895 /* Pods_ChuckNorrisFacts.framework */; };
 		F8AE9F813D665C022496FF0F /* Pods_ChuckNorrisFactsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 869A5A0BDE17F64C604159FB /* Pods_ChuckNorrisFactsTests.framework */; };
 /* End PBXBuildFile section */
@@ -73,6 +75,8 @@
 		23EA82242592B2DD00DF4B09 /* ChuckNorrisAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuckNorrisAPITests.swift; sourceTree = "<group>"; };
 		23EA82342592B85800DF4B09 /* TextSearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSearchViewModelTests.swift; sourceTree = "<group>"; };
 		23EA823F2592D8C100DF4B09 /* ShareFactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareFactViewController.swift; sourceTree = "<group>"; };
+		23EA82472592F10F00DF4B09 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		23EA824F2592F51F00DF4B09 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		5F694B12AA8E8B26ACEFFA03 /* Pods-ChuckNorrisFacts-ChuckNorrisFactsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuckNorrisFacts-ChuckNorrisFactsUITests.debug.xcconfig"; path = "Target Support Files/Pods-ChuckNorrisFacts-ChuckNorrisFactsUITests/Pods-ChuckNorrisFacts-ChuckNorrisFactsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A85897DFA177C325C348B54 /* Pods_ChuckNorrisFacts_ChuckNorrisFactsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChuckNorrisFacts_ChuckNorrisFactsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F12900E97C05FF6203F0CD7 /* Pods-ChuckNorrisFacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuckNorrisFacts.release.xcconfig"; path = "Target Support Files/Pods-ChuckNorrisFacts/Pods-ChuckNorrisFacts.release.xcconfig"; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 				2311C85725914EFC00128535 /* Views */,
 				2311C85B2591506200128535 /* View Controllers */,
 				2311C85C2591507D00128535 /* View Models */,
+				23EA82472592F10F00DF4B09 /* AppCoordinator.swift */,
 				23238D7D25910EAB00DB3FC0 /* AppDelegate.swift */,
 				23238D7F25910EAB00DB3FC0 /* SceneDelegate.swift */,
 				23238D8625910EAD00DB3FC0 /* Assets.xcassets */,
@@ -232,6 +237,7 @@
 			children = (
 				23EA8201259157E900DF4B09 /* ViewCoding.swift */,
 				23EA821E2592802E00DF4B09 /* ViewModel.swift */,
+				23EA824F2592F51F00DF4B09 /* Coordinator.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -503,6 +509,7 @@
 			files = (
 				23EA82402592D8C100DF4B09 /* ShareFactViewController.swift in Sources */,
 				23238DB825911D8700DB3FC0 /* ChuckNorrisAPI.swift in Sources */,
+				23EA82502592F52000DF4B09 /* Coordinator.swift in Sources */,
 				23238D8225910EAB00DB3FC0 /* InitialViewController.swift in Sources */,
 				2311C84E2591234200128535 /* Fact.swift in Sources */,
 				23EA821A25926E4C00DF4B09 /* TextSearchViewModel.swift in Sources */,
@@ -510,6 +517,7 @@
 				23EA8202259157E900DF4B09 /* ViewCoding.swift in Sources */,
 				2311C8532591280C00128535 /* Search.swift in Sources */,
 				23238D7E25910EAB00DB3FC0 /* AppDelegate.swift in Sources */,
+				23EA82482592F11000DF4B09 /* AppCoordinator.swift in Sources */,
 				23238D8025910EAB00DB3FC0 /* SceneDelegate.swift in Sources */,
 				23EA81FC2591571E00DF4B09 /* FactCell.swift in Sources */,
 				23EA821F2592802E00DF4B09 /* ViewModel.swift in Sources */,
