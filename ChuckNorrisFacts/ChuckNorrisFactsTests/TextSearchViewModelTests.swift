@@ -15,7 +15,7 @@ class TextSearchViewModelTests: XCTestCase {
     
     /// Como estou usando o block em um relay (nunca termina) foi
     /// necessário skipar o primeiro valor (default do init) e pegar o
-    /// primeiro seguinte (resultado da requisição)
+    /// primeiro seguinte (resultado da requisição).
     func test_searchedFacts() {
         let sut = TextSearchViewModel()
         sut.searchFacts("cook")

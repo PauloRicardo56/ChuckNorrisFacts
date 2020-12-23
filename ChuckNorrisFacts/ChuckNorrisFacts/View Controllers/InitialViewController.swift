@@ -44,6 +44,15 @@ class InitialViewController: UIViewController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "factCell", for: indexPath) as! FactCell
                 cell.valueText.text = element.value
                 cell.share.setImage(UIImage(systemName: "check"), for: .normal)
+                cell.share.rx.tap
+                    .subscribe(onNext: {
+                        self.navigationController?.present(
+                            ShareFactViewController(
+                                activityItems: [URL(string: element.url)!],
+                                applicationActivities: nil),
+                            animated: true, completion: nil)
+                    })
+                    .disposed(by: cell.bag)
                 cell.category.text = element.categories.first ?? "uncategorized"
                 return cell
             }
@@ -54,6 +63,3 @@ class InitialViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-
-

@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import RxSwift
 import UIKit
 
 class FactCell: UITableViewCell {
+    // MARK: Properties
+    var bag = DisposeBag()
     // MARK: Views
     var icon: UIImageView = {
         let view = UIImageView(image: UIImage(named: "chuckNorris"))
@@ -64,6 +67,11 @@ class FactCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupView()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bag = DisposeBag()
     }
     
     required init?(coder: NSCoder) {
