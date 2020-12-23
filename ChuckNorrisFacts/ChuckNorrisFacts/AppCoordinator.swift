@@ -28,7 +28,7 @@ class AppCoordinator: Coordinator {
     }
     
     func share(url: String) {
-        let vc = ShareFactViewController(activityItems: [URL(string: url)!], applicationActivities: nil)
+        let vc = UIActivityViewController(activityItems: [URL(string: url)!], applicationActivities: nil)
         navigationController.present(vc, animated: true)
     }
 }

@@ -21,8 +21,8 @@ class FactsListTableView: UITableView {
         
         NSLayoutConstraint.activate([
             widthAnchor.constraint(equalTo: superview.widthAnchor),
-            heightAnchor.constraint(equalTo: superview.heightAnchor),
-            centerXAnchor.constraint(equalTo: superview.centerXAnchor)
+            centerXAnchor.constraint(equalTo: superview.centerXAnchor),
+            heightAnchor.constraint(equalTo: superview.heightAnchor)
         ])
     }
     

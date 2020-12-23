@@ -40,6 +40,11 @@ class InitialViewController: UIViewController {
     // MARK: TableView DataSource
     private func bindViewModel() {
         viewModel.facts
+            // TODO: Size to fit tableView
+//            .asDriver()
+//            .do(onNext: { [weak self] _ in
+//                self?.tableView.sizeToFit()
+//            })
             .bind(to: self.tableView.rx.items) { (tableView: UITableView, index: Int, element: Fact) in
                 let indexPath = IndexPath(row: index, section: 0)
                 let cell = tableView.dequeueReusableCell(withIdentifier: "factCell", for: indexPath) as! FactCell
