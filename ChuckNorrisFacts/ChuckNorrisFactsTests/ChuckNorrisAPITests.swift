@@ -27,7 +27,7 @@ class ChuckNorrisAPITests: XCTestCase {
         let textSearchResult = try? sut.searchFact("cake")
             .toBlocking()
             .first()
-            .map { $0.total }
+            .map(\.total)
             
         XCTAssertTrue(try XCTUnwrap(textSearchResult) > 0)
     }

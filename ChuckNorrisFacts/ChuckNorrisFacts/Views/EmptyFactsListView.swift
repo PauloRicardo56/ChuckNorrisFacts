@@ -40,6 +40,7 @@ class EmptyFactsListView: UIView {
     let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
         indicator.startAnimating()
+        indicator.isHidden = true
         return indicator
     }()
     
@@ -70,7 +71,7 @@ extension EmptyFactsListView: ViewCodable {
         addSubview(stackView)
         stackView.addArrangedSubview(icon)
         stackView.addArrangedSubview(label)
-//        stackView.addArrangedSubview(activityIndicator)
+        stackView.addArrangedSubview(activityIndicator)
     }
     
     func setupConstraints() {

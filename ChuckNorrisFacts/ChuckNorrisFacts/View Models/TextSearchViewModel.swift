@@ -13,6 +13,6 @@ class TextSearchViewModel: ViewModel {
     
     func searchFacts(_ searchText: String) -> Observable<[Fact]> {
         ChuckNorrisAPI.shared.searchFact(searchText)
-            .map { $0.result }
+            .map(\.result)
     }
 }

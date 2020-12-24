@@ -9,12 +9,15 @@ import UIKit
 import RxSwift
 
 class InitialViewController: UIViewController {
+    // MARK: Properties
     let bag = DisposeBag()
+    let viewModel: TextSearchViewModel
+    var coordinator: AppCoordinator?
+    
+    // MARK: Views
     let tableView = FactsListTableView()
     let emptyView = EmptyFactsListView()
     var searchBar = FactSearchBar()
-    let viewModel: TextSearchViewModel
-    var coordinator: AppCoordinator?
     
     init(viewModel: TextSearchViewModel) {
         self.viewModel = viewModel
@@ -23,20 +26,51 @@ class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        view.addSubview(tableView)
         view.addSubview(emptyView)
         view.backgroundColor = .white
-        searchBarSetup()
+        
+        navigationItem.leftBarButtonItem = .init(customView: searchBar)
+        
+        
+        subscribeSearchActivity()
+        changeViewWhenAPIResponse()
+        setupTableViewDataSrouce()
     }
     
-    private func searchBarSetup() {
-        navigationItem.leftBarButtonItem = .init(customView: searchBar)
+    // MARK: - Methods
+    private func subscribeSearchActivity() {
+        searchInput()
+            .map { _ in false }
+            .subscribe(emptyView.activityIndicator.rx.isHidden)
+            .disposed(by: bag)
+    }
+    
+    private func searchInput() -> Observable<String> {
         searchBar.rx.searchButtonClicked
             .map { [weak self] in self?.searchBar.text ?? "" }
             .filter { !$0.isEmpty }
-            .flatMapLatest {
-                self.viewModel.searchFacts($0)
+    }
+    
+    private func changeViewWhenAPIResponse() {
+        APIResponse()
+            .take(1)
+            .asDriver(onErrorJustReturn: [])
+            .map { _ in true }
+            .drive{ [weak self] _ in
+                guard let self = self else { return }
+                self.emptyView.removeFromSuperview()
+                self.view.addSubview(self.tableView)
             }
+            .disposed(by: bag)
+    }
+    
+    private func APIResponse() -> Observable<[Fact]> {
+        searchInput()
+            .flatMapLatest { self.viewModel.searchFacts($0) }
+    }
+    
+    private func setupTableViewDataSrouce() {
+        APIResponse()
             .bind(to: self.tableView.rx.items) { (tableView: UITableView, index: Int, element: Fact) in
                 let indexPath = IndexPath(row: index, section: 0)
                 let cell = tableView.dequeueReusableCell(withIdentifier: "factCell", for: indexPath) as! FactCell
