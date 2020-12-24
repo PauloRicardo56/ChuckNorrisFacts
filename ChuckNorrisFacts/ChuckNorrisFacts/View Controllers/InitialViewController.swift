@@ -26,6 +26,7 @@ class InitialViewController: UIViewController {
         
         searchBarSetup()
         bindViewModel()
+        tableViewSetup()
     }
     
     private func searchBarSetup() {
@@ -40,11 +41,6 @@ class InitialViewController: UIViewController {
     // MARK: TableView DataSource
     private func bindViewModel() {
         viewModel.facts
-            // TODO: Size to fit tableView
-//            .asDriver()
-//            .do(onNext: { [weak self] _ in
-//                self?.tableView.sizeToFit()
-//            })
             .bind(to: self.tableView.rx.items) { (tableView: UITableView, index: Int, element: Fact) in
                 let indexPath = IndexPath(row: index, section: 0)
                 let cell = tableView.dequeueReusableCell(withIdentifier: "factCell", for: indexPath) as! FactCell
@@ -55,9 +51,25 @@ class InitialViewController: UIViewController {
                     .emit(onNext: { [weak self] in self?.coordinator?.share(url: element.url) })
                     .disposed(by: cell.bag)
                 cell.category.text = element.categories.first ?? "uncategorized"
+                cell.category.text?.append(" \(element.value.count)")
                 return cell
             }
             .disposed(by: self.bag)
+    }
+    
+    private func tableViewSetup() {
+        viewModel.facts
+            .asDriver()
+            .compactMap { [weak self] _ in self?.tableView.contentSize.height }
+            .drive(onNext: { [weak self] contentHeight in
+                guard let self = self else { return }
+                let height = self.tableView.constraints.first { constraint in
+                    constraint.firstAttribute == .height
+                }
+                height?.constant = contentHeight > self.view.frame.height ? self.view.frame.height : contentHeight
+                self.tableView.layoutIfNeeded()
+            })
+            .disposed(by: bag)
     }
     
     required init?(coder: NSCoder) {

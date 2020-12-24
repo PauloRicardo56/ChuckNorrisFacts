@@ -69,15 +69,15 @@ class FactCell: UITableViewCell, ReactiveUI {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupView()
-        setupReactiveFontSize(of: valueText)
-            .subscribe(valueText.rx.font)
-            .disposed(by: bag)
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         /// Necessário para não termos mais de um subscriber por cellquando no dequeue da tableView
         bag = DisposeBag()
+        reactiveFontSize(of: valueText)
+            .subscribe(valueText.rx.font)
+            .disposed(by: bag)
     }
     
     required init?(coder: NSCoder) {

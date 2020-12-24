@@ -16,7 +16,7 @@ class ReactiveUIMock: ReactiveUI {
     
     init() {
         textLabel.text = ""
-        setupReactiveFontSize(of: textLabel)
+        reactiveFontSize(of: textLabel)
             .subscribe(textLabel.rx.font)
             .disposed(by: bag)
     }
