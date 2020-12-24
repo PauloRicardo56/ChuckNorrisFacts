@@ -10,8 +10,7 @@ import RxSwift
 import RxCocoa
 import UIKit
 
-class FactCell: UITableViewCell {
-    
+class FactCell: UITableViewCell, ReactiveUI {
     var bag = DisposeBag()
     
     // MARK: Views
@@ -70,28 +69,15 @@ class FactCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupView()
-        setupReactiveFontSize()
+        setupReactiveFontSize(of: valueText)
+            .subscribe(valueText.rx.font)
+            .disposed(by: bag)
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         /// Necessário para não termos mais de um subscriber por cellquando no dequeue da tableView
         bag = DisposeBag()
-    }
-    
-    private func setupReactiveFontSize() {
-        valueText.rx.observe(String.self, "text")
-            .compactMap { $0 }
-            .map { text -> UIFont in
-                switch text.count {
-                case ..<80:
-                    return .systemFont(ofSize: 22)
-                default:
-                    return .systemFont(ofSize: 14)
-                }
-            }
-            .subscribe(valueText.rx.font)
-            .disposed(by: bag)
     }
     
     required init?(coder: NSCoder) {
