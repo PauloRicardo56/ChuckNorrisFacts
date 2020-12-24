@@ -69,6 +69,9 @@ class FactCell: UITableViewCell, ReactiveUI {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupView()
+        reactiveFontSize(of: valueText)
+            .subscribe(valueText.rx.font)
+            .disposed(by: bag)
     }
     
     override func prepareForReuse() {

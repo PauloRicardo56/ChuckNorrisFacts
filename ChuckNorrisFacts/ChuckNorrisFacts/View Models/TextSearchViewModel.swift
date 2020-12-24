@@ -10,8 +10,6 @@ import RxSwift
 import RxCocoa
 
 class TextSearchViewModel: ViewModel {
-    let bag = DisposeBag()
-    let facts = BehaviorRelay<[Fact]>(value: [])
     
     func searchFacts(_ searchText: String) -> Observable<[Fact]> {
         ChuckNorrisAPI.shared.searchFact(searchText)

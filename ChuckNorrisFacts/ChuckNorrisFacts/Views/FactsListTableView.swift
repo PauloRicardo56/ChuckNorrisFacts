@@ -24,15 +24,11 @@ class FactsListTableView: UITableView, ReactiveUI {
         guard let superview = superview else { return }
         
         NSLayoutConstraint.activate([
-            widthAnchor.constraint(equalTo: superview.widthAnchor),
-            centerXAnchor.constraint(equalTo: superview.centerXAnchor),
             topAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.topAnchor),
-            heightAnchor.constraint(equalTo: superview.heightAnchor)
+            bottomAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.bottomAnchor),
+            centerXAnchor.constraint(equalTo: superview.centerXAnchor),
+            widthAnchor.constraint(equalTo: superview.widthAnchor)
         ])
-    }
-    
-    func reactiveHeight() {
-        
     }
     
     required init?(coder: NSCoder) {

@@ -11,6 +11,7 @@ import RxSwift
 class InitialViewController: UIViewController {
     let bag = DisposeBag()
     let tableView = FactsListTableView()
+    let emptyView = EmptyFactsListView()
     var searchBar = FactSearchBar()
     let viewModel: TextSearchViewModel
     var coordinator: AppCoordinator?
@@ -22,8 +23,9 @@ class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(tableView)
-        
+//        view.addSubview(tableView)
+        view.addSubview(emptyView)
+        view.backgroundColor = .white
         searchBarSetup()
     }
     
@@ -45,7 +47,6 @@ class InitialViewController: UIViewController {
                     .emit(onNext: { [weak self] in self?.coordinator?.share(url: element.url) })
                     .disposed(by: cell.bag)
                 cell.category.text = element.categories.first ?? "uncategorized"
-                cell.category.text?.append(" \(element.value.count)")
                 return cell
             }
             .disposed(by: bag)
