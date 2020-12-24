@@ -25,8 +25,6 @@ class InitialViewController: UIViewController {
         view.addSubview(tableView)
         
         searchBarSetup()
-        bindViewModel()
-        tableViewSetup()
     }
     
     private func searchBarSetup() {
@@ -34,13 +32,9 @@ class InitialViewController: UIViewController {
         searchBar.rx.searchButtonClicked
             .map { [weak self] in self?.searchBar.text ?? "" }
             .filter { !$0.isEmpty }
-            .subscribe(onNext: { [weak self] in self?.viewModel.searchFacts($0) })
-            .disposed(by: bag)
-    }
-    
-    // MARK: TableView DataSource
-    private func bindViewModel() {
-        viewModel.facts
+            .flatMapLatest {
+                self.viewModel.searchFacts($0)
+            }
             .bind(to: self.tableView.rx.items) { (tableView: UITableView, index: Int, element: Fact) in
                 let indexPath = IndexPath(row: index, section: 0)
                 let cell = tableView.dequeueReusableCell(withIdentifier: "factCell", for: indexPath) as! FactCell
@@ -54,21 +48,6 @@ class InitialViewController: UIViewController {
                 cell.category.text?.append(" \(element.value.count)")
                 return cell
             }
-            .disposed(by: self.bag)
-    }
-    
-    private func tableViewSetup() {
-        viewModel.facts
-            .asDriver()
-            .compactMap { [weak self] _ in self?.tableView.contentSize.height }
-            .drive(onNext: { [weak self] contentHeight in
-                guard let self = self else { return }
-                let height = self.tableView.constraints.first { constraint in
-                    constraint.firstAttribute == .height
-                }
-                height?.constant = contentHeight > self.view.frame.height ? self.view.frame.height : contentHeight
-                self.tableView.layoutIfNeeded()
-            })
             .disposed(by: bag)
     }
     

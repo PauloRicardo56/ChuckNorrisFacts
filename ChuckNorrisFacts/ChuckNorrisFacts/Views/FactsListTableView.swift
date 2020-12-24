@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 import UIKit
 
 class FactsListTableView: UITableView, ReactiveUI {
@@ -17,12 +18,6 @@ class FactsListTableView: UITableView, ReactiveUI {
         super.init(frame: .zero, style: .plain)
         translatesAutoresizingMaskIntoConstraints = false
         register(FactCell.self, forCellReuseIdentifier: "factCell")
-        
-        
-        
-//        reactiveHeight(of: self)
-//            .subscribe(rx.frame)
-//            .disposed(by: bag)
     }
     
     override func didMoveToSuperview() {
@@ -32,8 +27,7 @@ class FactsListTableView: UITableView, ReactiveUI {
             widthAnchor.constraint(equalTo: superview.widthAnchor),
             centerXAnchor.constraint(equalTo: superview.centerXAnchor),
             topAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.topAnchor),
-            heightAnchor.constraint(equalToConstant: 50)
-//            heightAnchor.constraint(equalTo: superview.heightAnchor)
+            heightAnchor.constraint(equalTo: superview.heightAnchor)
         ])
     }
     

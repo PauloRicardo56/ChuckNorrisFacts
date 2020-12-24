@@ -13,12 +13,6 @@ protocol ReactiveUI {}
 
 extension ReactiveUI {
     
-//    func reactiveHeight<T: UIView>(of view: T) -> Observable<CGRect> {
-//        tableView.rx.prefetchRows
-//            .map { _ in tableView.contentSize.height }
-//            .map { CGRect(origin: tableView.frame.origin, size: .init(width: tableView.frame.width, height: $0)) }
-//    }
-    
     func reactiveFontSize(
         of label: UILabel,
         with charLimit: Int = 80,

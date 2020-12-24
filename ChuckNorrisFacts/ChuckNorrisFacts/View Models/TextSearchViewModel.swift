@@ -13,10 +13,8 @@ class TextSearchViewModel: ViewModel {
     let bag = DisposeBag()
     let facts = BehaviorRelay<[Fact]>(value: [])
     
-    func searchFacts(_ searchText: String) {
+    func searchFacts(_ searchText: String) -> Observable<[Fact]> {
         ChuckNorrisAPI.shared.searchFact(searchText)
             .map { $0.result }
-            .bind(to: facts)
-            .disposed(by: bag)
     }
 }
