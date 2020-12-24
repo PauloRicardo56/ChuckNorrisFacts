@@ -9,4 +9,4 @@
 
 ## Execução do projeto
 
-### Versão mínima do iOS: 14.0
+- Versão mínima do iOS: 14.0
