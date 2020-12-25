@@ -31,7 +31,6 @@ class InitialViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = .init(customView: searchBar)
         
-        
         subscribeSearchActivity()
         changeViewWhenAPIResponse()
         setupTableViewDataSrouce()

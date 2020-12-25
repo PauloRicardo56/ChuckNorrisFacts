@@ -15,4 +15,5 @@ class TextSearchViewModel: ViewModel {
         ChuckNorrisAPI.shared.searchFact(searchText)
             .map(\.result)
     }
+    
 }
