@@ -6,9 +6,13 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 import UIKit
 
-class FactsListTableView: UITableView {
+class FactsListTableView: UITableView, ReactiveUI {
+    
+    let bag = DisposeBag()
     
     init() {
         super.init(frame: .zero, style: .plain)
@@ -20,9 +24,10 @@ class FactsListTableView: UITableView {
         guard let superview = superview else { return }
         
         NSLayoutConstraint.activate([
-            widthAnchor.constraint(equalTo: superview.widthAnchor),
+            topAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.topAnchor),
+            bottomAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.bottomAnchor),
             centerXAnchor.constraint(equalTo: superview.centerXAnchor),
-            heightAnchor.constraint(equalTo: superview.heightAnchor)
+            widthAnchor.constraint(equalTo: superview.widthAnchor)
         ])
     }
     

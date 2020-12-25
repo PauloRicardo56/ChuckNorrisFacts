@@ -7,11 +7,12 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 import UIKit
 
-class FactCell: UITableViewCell {
-    // MARK: Properties
+class FactCell: UITableViewCell, ReactiveUI {
     var bag = DisposeBag()
+    
     // MARK: Views
     var icon: UIImageView = {
         let view = UIImageView(image: UIImage(named: "chuckNorris"))
@@ -37,6 +38,7 @@ class FactCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
     // MARK: StackViews
     var backgroundStack: UIStackView = {
         let stack = UIStackView()
@@ -67,11 +69,18 @@ class FactCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupView()
+        reactiveFontSize(of: valueText)
+            .subscribe(valueText.rx.font)
+            .disposed(by: bag)
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        /// Necessário para não termos mais de um subscriber por cellquando no dequeue da tableView
         bag = DisposeBag()
+        reactiveFontSize(of: valueText)
+            .subscribe(valueText.rx.font)
+            .disposed(by: bag)
     }
     
     required init?(coder: NSCoder) {
@@ -79,6 +88,8 @@ class FactCell: UITableViewCell {
     }
 }
 
+
+// MARK: - View setups
 extension FactCell: ViewCodable {
     func setupViewHierarchy() {
         contentView.addSubview(backgroundStack)
