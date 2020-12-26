@@ -11,23 +11,27 @@ import RxCocoa
 
 class TextSearchViewModel: ViewModel {
     
-    let maxErrorAttempts = 3
-    
-    func searchFacts(_ searchText: String) -> Observable<[Fact]> {
-        ChuckNorrisAPI.shared.searchFact(searchText)
-            .retry { err in
-                err.enumerated()
-                    .flatMap { [weak self] attempt, err -> Observable<Int> in
-                        guard let self = self else { return .error(err) }
-                        if attempt >= self.maxErrorAttempts {
-                            return .error(err)
-                        }
-                        return .timer(.seconds(3), scheduler: MainScheduler.instance)
+    func searchFact(_ searchText: String) -> Observable<APIResult<Search>> {
+        let params = [("query", searchText)]
+        
+        return ChuckNorrisAPI.shared.buildRequest(pathComponent: "search", params: params)
+            .catchAndReturn(.failure(.noConnection))
+            .map { result in
+                do {
+                    switch result {
+                    case .success(let data):
+                        return .success(try JSONDecoder().decode(Search.self, from: data))
+                    case .failure(let err):
+                        return .failure(err)
                     }
+                } catch {
+                    return .failure(.parseError)
+                }
             }
-            .map(\.result)
     }
     
-    // MARK: Error handling
-    
+//    func randomFact() -> Observable<Fact> {
+//        ChuckNorrisAPI.shared.buildRequest(pathComponent: "random", params: [])
+//            .map { try JSONDecoder().decode(Fact.self, from: $0) }
+//    }
 }

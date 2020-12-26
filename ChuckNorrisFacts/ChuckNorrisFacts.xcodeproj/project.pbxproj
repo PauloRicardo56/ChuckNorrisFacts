@@ -18,6 +18,8 @@
 		23238DA025910EAE00DB3FC0 /* ChuckNorrisFactsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23238D9F25910EAE00DB3FC0 /* ChuckNorrisFactsUITests.swift */; };
 		23238DB825911D8700DB3FC0 /* ChuckNorrisAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23238DB725911D8700DB3FC0 /* ChuckNorrisAPI.swift */; };
 		23514B242594FAAE00620D74 /* EmptyFactsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23514B232594FAAE00620D74 /* EmptyFactsListView.swift */; };
+		23514B2F259681CA00620D74 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23514B2E259681CA00620D74 /* APIError.swift */; };
+		23514B342596833E00620D74 /* ErrorMessageAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23514B332596833E00620D74 /* ErrorMessageAlert.swift */; };
 		23EA81F72591552A00DF4B09 /* FactsListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA81F62591552A00DF4B09 /* FactsListTableView.swift */; };
 		23EA81FC2591571E00DF4B09 /* FactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA81FB2591571E00DF4B09 /* FactCell.swift */; };
 		23EA8202259157E900DF4B09 /* ViewCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA8201259157E900DF4B09 /* ViewCoding.swift */; };
@@ -70,6 +72,8 @@
 		23238DA125910EAE00DB3FC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23238DB725911D8700DB3FC0 /* ChuckNorrisAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuckNorrisAPI.swift; sourceTree = "<group>"; };
 		23514B232594FAAE00620D74 /* EmptyFactsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFactsListView.swift; sourceTree = "<group>"; };
+		23514B2E259681CA00620D74 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		23514B332596833E00620D74 /* ErrorMessageAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageAlert.swift; sourceTree = "<group>"; };
 		23EA81F62591552A00DF4B09 /* FactsListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsListTableView.swift; sourceTree = "<group>"; };
 		23EA81FB2591571E00DF4B09 /* FactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactCell.swift; sourceTree = "<group>"; };
 		23EA8201259157E900DF4B09 /* ViewCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCoding.swift; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 			children = (
 				2311C84D2591234200128535 /* Fact.swift */,
 				2311C8522591280C00128535 /* Search.swift */,
+				23514B2E259681CA00620D74 /* APIError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 				23514B232594FAAE00620D74 /* EmptyFactsListView.swift */,
 				23EA81FB2591571E00DF4B09 /* FactCell.swift */,
 				23EA8214259258A200DF4B09 /* FactsSearchBar.swift */,
+				23514B332596833E00620D74 /* ErrorMessageAlert.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -527,6 +533,8 @@
 				23238DB825911D8700DB3FC0 /* ChuckNorrisAPI.swift in Sources */,
 				23EA827D2594220A00DF4B09 /* ReactiveUI.swift in Sources */,
 				23EA82502592F52000DF4B09 /* Coordinator.swift in Sources */,
+				23514B2F259681CA00620D74 /* APIError.swift in Sources */,
+				23514B342596833E00620D74 /* ErrorMessageAlert.swift in Sources */,
 				23238D8225910EAB00DB3FC0 /* InitialViewController.swift in Sources */,
 				2311C84E2591234200128535 /* Fact.swift in Sources */,
 				23EA821A25926E4C00DF4B09 /* TextSearchViewModel.swift in Sources */,

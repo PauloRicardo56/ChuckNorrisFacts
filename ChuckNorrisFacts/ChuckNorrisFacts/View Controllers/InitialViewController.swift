@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class InitialViewController: UIViewController {
     // MARK: Properties
@@ -52,10 +53,8 @@ class InitialViewController: UIViewController {
     
     private func changeViewWhenAPIResponse() {
         APIResponse()
-            .take(1)
-            .asDriver(onErrorJustReturn: [])
             .map { _ in true }
-            .drive{ [weak self] _ in
+            .drive { [weak self] _ in
                 guard let self = self else { return }
                 self.emptyView.removeFromSuperview()
                 self.view.addSubview(self.tableView)
@@ -63,14 +62,24 @@ class InitialViewController: UIViewController {
             .disposed(by: bag)
     }
     
-    private func APIResponse() -> Observable<[Fact]> {
+    private func APIResponse() -> Driver<[Fact]> {
         searchInput()
-            .flatMapLatest { self.viewModel.searchFacts($0) }
+            .flatMapLatest { self.viewModel.searchFact($0) }
+            .asDriver(onErrorJustReturn: .failure(.serverError))
+            .compactMap { (result) -> [Fact]? in
+                switch result {
+                case .failure(let err):
+                    self.present(ErrorMessageAlert(with: err), animated: true)
+                    return nil
+                case .success(let value):
+                    return value.result
+                }
+            }
     }
     
     private func setupTableViewDataSrouce() {
         APIResponse()
-            .bind(to: self.tableView.rx.items) { (tableView: UITableView, index: Int, element: Fact) in
+            .drive(self.tableView.rx.items) { (tableView: UITableView, index: Int, element: Fact) in
                 let indexPath = IndexPath(row: index, section: 0)
                 let cell = tableView.dequeueReusableCell(withIdentifier: "factCell", for: indexPath) as! FactCell
                 cell.valueText.text = element.value
