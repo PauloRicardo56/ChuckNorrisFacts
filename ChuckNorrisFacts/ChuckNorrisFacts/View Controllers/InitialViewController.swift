@@ -32,12 +32,35 @@ class InitialViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = .init(customView: searchBar)
         
+        bindViewModel()
         subscribeSearchActivity()
         changeViewWhenAPIResponse()
         setupTableViewDataSrouce()
     }
     
-    // MARK: - Methods
+    // MARK: - View model binds
+    private func bindViewModel() {
+        bindSearchFact()
+        bindErrors()
+    }
+    
+    private func bindSearchFact() {
+        searchInput()
+            .subscribe { [weak self] search in self?.viewModel.searchFact(search) }
+            .disposed(by: bag)
+    }
+    
+    private func bindErrors() {
+        self.viewModel.error
+            .asDriver(onErrorJustReturn: .singleMessage(.serverError))
+            .do { [weak self] _ in self?.emptyFactListView.activityIndicator.isHidden = true }
+            .drive { [weak self] err in
+                self?.present(ErrorMessageAlert(with: err), animated: true)
+            }
+            .disposed(by: bag)
+    }
+    
+    // MARK: - View binds
     private func subscribeSearchActivity() {
         searchInput()
             .map { _ in false }
@@ -52,7 +75,8 @@ class InitialViewController: UIViewController {
     }
     
     private func changeViewWhenAPIResponse() {
-        APIResponse()
+        self.viewModel.facts
+            .asDriver(onErrorJustReturn: [])
             .map { _ in true }
             .drive { [weak self] _ in
                 guard let self = self else { return }
@@ -62,26 +86,17 @@ class InitialViewController: UIViewController {
             .disposed(by: bag)
     }
     
-    private func APIResponse() -> Driver<[Fact]> {
-        searchInput()
-            .flatMapLatest { self.viewModel.searchFact($0) }
-            .asDriver(onErrorJustReturn: .failure(.singleMessage(.serverError)))
-            .compactMap { result -> [Fact]? in
-                switch result {
-                case .failure(let err):
-                    self.present(ErrorMessageAlert(with: err), animated: true) {
-                        self.emptyFactListView.activityIndicator.isHidden = true
-                    }
-                    return nil
-                case .success(let value):
-                    return value.result
-                }
-            }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
+}
+
+// MARK: - TableView DataSource
+extension InitialViewController {
     
     private func setupTableViewDataSrouce() {
-        APIResponse()
-            .drive(self.tableView.rx.items) { (tableView: UITableView, index: Int, element: Fact) in
+        self.viewModel.facts
+            .bind(to: self.tableView.rx.items) { (tableView: UITableView, index: Int, element: Fact) in
                 let indexPath = IndexPath(row: index, section: 0)
                 let cell = tableView.dequeueReusableCell(withIdentifier: "factCell", for: indexPath) as! FactCell
                 cell.valueText.text = element.value
@@ -94,9 +109,5 @@ class InitialViewController: UIViewController {
                 return cell
             }
             .disposed(by: bag)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

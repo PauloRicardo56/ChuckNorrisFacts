@@ -11,23 +11,29 @@ import RxCocoa
 
 class TextSearchViewModel: ViewModel {
     
-    func searchFact(_ searchText: String) -> Observable<APIResult<Search, APIErrorMessage>> {
+    let bag = DisposeBag()
+    let error = PublishSubject<APIErrorMessage>()
+    let facts = PublishSubject<[Fact]>()
+    
+    func searchFact(_ searchText: String) {
         let params = [("query", searchText)]
         
-        return ChuckNorrisAPI.shared.buildRequest(pathComponent: "search", params: params)
+        ChuckNorrisAPI.shared.buildRequest(pathComponent: "search", params: params)
             .catchAndReturn(.failure(.singleMessage(.noConnection)))
-            .map { result in
+            .subscribe(onNext: { [weak self] (result) in
                 do {
                     switch result {
                     case .success(let data):
-                        return .success(try JSONDecoder().decode(Search.self, from: data))
+                        let search = try JSONDecoder().decode(Search.self, from: data)
+                        self?.facts.onNext(search.result)
                     case .failure(let err):
-                        return .failure(err)
+                        self?.error.onNext(err)
                     }
                 } catch {
-                    return .failure(.singleMessage(.parseError))
+                    self?.error.onNext(.singleMessage(.parseError))
                 }
-            }
+            })
+            .disposed(by: bag)
     }
     
 //    func randomFact() -> Observable<Fact> {
