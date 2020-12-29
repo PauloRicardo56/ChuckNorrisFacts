@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class InitialViewController: UIViewController {
     // MARK: Properties
@@ -16,7 +17,7 @@ class InitialViewController: UIViewController {
     
     // MARK: Views
     let tableView = FactsListTableView()
-    let emptyView = EmptyFactsListView()
+    let emptyFactListView = EmptyFactsListView()
     var searchBar = FactSearchBar()
     
     init(viewModel: TextSearchViewModel) {
@@ -26,21 +27,44 @@ class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(emptyView)
+        view.addSubview(emptyFactListView)
         view.backgroundColor = .white
         
         navigationItem.leftBarButtonItem = .init(customView: searchBar)
         
+        bindViewModel()
         subscribeSearchActivity()
         changeViewWhenAPIResponse()
         setupTableViewDataSrouce()
     }
     
-    // MARK: - Methods
+    // MARK: - View model binds
+    private func bindViewModel() {
+        bindSearchFact()
+        bindErrors()
+    }
+    
+    private func bindSearchFact() {
+        searchInput()
+            .subscribe { [weak self] search in self?.viewModel.searchFact(search) }
+            .disposed(by: bag)
+    }
+    
+    private func bindErrors() {
+        self.viewModel.error
+            .asDriver(onErrorJustReturn: .singleMessage(.serverError))
+            .do { [weak self] _ in self?.emptyFactListView.activityIndicator.isHidden = true }
+            .drive { [weak self] err in
+                self?.present(ErrorMessageAlert(with: err), animated: true)
+            }
+            .disposed(by: bag)
+    }
+    
+    // MARK: - View binds
     private func subscribeSearchActivity() {
         searchInput()
             .map { _ in false }
-            .subscribe(emptyView.activityIndicator.rx.isHidden)
+            .subscribe(emptyFactListView.activityIndicator.rx.isHidden)
             .disposed(by: bag)
     }
     
@@ -51,25 +75,27 @@ class InitialViewController: UIViewController {
     }
     
     private func changeViewWhenAPIResponse() {
-        APIResponse()
-            .take(1)
+        self.viewModel.facts
             .asDriver(onErrorJustReturn: [])
             .map { _ in true }
-            .drive{ [weak self] _ in
+            .drive { [weak self] _ in
                 guard let self = self else { return }
-                self.emptyView.removeFromSuperview()
+                self.emptyFactListView.removeFromSuperview()
                 self.view.addSubview(self.tableView)
             }
             .disposed(by: bag)
     }
     
-    private func APIResponse() -> Observable<[Fact]> {
-        searchInput()
-            .flatMapLatest { self.viewModel.searchFacts($0) }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
+}
+
+// MARK: - TableView DataSource
+extension InitialViewController {
     
     private func setupTableViewDataSrouce() {
-        APIResponse()
+        self.viewModel.facts
             .bind(to: self.tableView.rx.items) { (tableView: UITableView, index: Int, element: Fact) in
                 let indexPath = IndexPath(row: index, section: 0)
                 let cell = tableView.dequeueReusableCell(withIdentifier: "factCell", for: indexPath) as! FactCell
@@ -83,9 +109,5 @@ class InitialViewController: UIViewController {
                 return cell
             }
             .disposed(by: bag)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

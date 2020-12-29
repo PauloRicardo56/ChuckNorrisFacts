@@ -9,19 +9,15 @@ import Foundation
 
 class Fact: Codable {
     let categories: [String]
-    let createdAt: String
-    let iconURL: String
-    let id, updatedAt: String
-    let url: String
-    let value: String
+    let createdAt, iconURL, url: String
+    let id, updatedAt, value: String
 
     enum CodingKeys: String, CodingKey {
         case categories
+        case id, url, value
         case createdAt = "created_at"
         case iconURL = "icon_url"
-        case id
         case updatedAt = "updated_at"
-        case url, value
     }
     
     init(
