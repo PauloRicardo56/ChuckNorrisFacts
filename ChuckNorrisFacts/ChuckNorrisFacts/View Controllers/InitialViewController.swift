@@ -17,7 +17,7 @@ class InitialViewController: UIViewController {
     
     // MARK: Views
     let tableView = FactsListTableView()
-    let emptyView = EmptyFactsListView()
+    let emptyFactListView = EmptyFactsListView()
     var searchBar = FactSearchBar()
     
     init(viewModel: TextSearchViewModel) {
@@ -27,7 +27,7 @@ class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(emptyView)
+        view.addSubview(emptyFactListView)
         view.backgroundColor = .white
         
         navigationItem.leftBarButtonItem = .init(customView: searchBar)
@@ -41,7 +41,7 @@ class InitialViewController: UIViewController {
     private func subscribeSearchActivity() {
         searchInput()
             .map { _ in false }
-            .subscribe(emptyView.activityIndicator.rx.isHidden)
+            .subscribe(emptyFactListView.activityIndicator.rx.isHidden)
             .disposed(by: bag)
     }
     
@@ -56,7 +56,7 @@ class InitialViewController: UIViewController {
             .map { _ in true }
             .drive { [weak self] _ in
                 guard let self = self else { return }
-                self.emptyView.removeFromSuperview()
+                self.emptyFactListView.removeFromSuperview()
                 self.view.addSubview(self.tableView)
             }
             .disposed(by: bag)
@@ -65,11 +65,13 @@ class InitialViewController: UIViewController {
     private func APIResponse() -> Driver<[Fact]> {
         searchInput()
             .flatMapLatest { self.viewModel.searchFact($0) }
-            .asDriver(onErrorJustReturn: .failure(.serverError))
-            .compactMap { (result) -> [Fact]? in
+            .asDriver(onErrorJustReturn: .failure(.singleMessage(.serverError)))
+            .compactMap { result -> [Fact]? in
                 switch result {
                 case .failure(let err):
-                    self.present(ErrorMessageAlert(with: err), animated: true)
+                    self.present(ErrorMessageAlert(with: err), animated: true) {
+                        self.emptyFactListView.activityIndicator.isHidden = true
+                    }
                     return nil
                 case .success(let value):
                     return value.result

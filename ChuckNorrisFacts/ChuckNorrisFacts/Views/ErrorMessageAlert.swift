@@ -10,7 +10,7 @@ import UIKit
 
 class ErrorMessageAlert: UIAlertController {
     
-    init(with error: APIError?) {
+    init(with error: APIErrorMessage?) {
         super.init(nibName: nil, bundle: nil)
         title = "Chuck Norris API ERROR"
         message = error?.message ?? ""

@@ -9,11 +9,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-enum APIResult<Value> {
-    case success(Value)
-    case failure(APIError)
-}
-
 class ChuckNorrisAPI {
     static let shared = ChuckNorrisAPI()
     let baseURL = URL(string: "https://api.chucknorris.io/jokes")!
@@ -26,7 +21,7 @@ class ChuckNorrisAPI {
         method: String = "GET",
         pathComponent: String,
         params: [(String, String)]
-    ) -> Observable<APIResult<Data>> {
+    ) -> Observable<APIResult<Data, APIErrorMessage>> {
         
         let session = URLSession.shared
         let request = Observable<URLRequest>.create { [weak self] observer in
@@ -51,11 +46,15 @@ class ChuckNorrisAPI {
         return request.flatMap { request in
             session.rx.response(request: request)
                 .map { response, data in
-                    switch response.statusCode {
-                    case 200..<300:
-                        return .success(data)
-                    default:
-                        return .failure(.serverError)
+                    do {
+                        switch response.statusCode {
+                        case 200..<300:
+                            return .success(data)
+                        default:
+                            return .failure(try JSONDecoder().decode(APIErrorMessage.self, from: data))
+                        }
+                    } catch {
+                        return .failure(.singleMessage(.serverError))
                     }
                 }
         }

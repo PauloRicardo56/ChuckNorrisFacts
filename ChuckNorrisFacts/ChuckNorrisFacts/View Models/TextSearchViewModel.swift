@@ -11,11 +11,11 @@ import RxCocoa
 
 class TextSearchViewModel: ViewModel {
     
-    func searchFact(_ searchText: String) -> Observable<APIResult<Search>> {
+    func searchFact(_ searchText: String) -> Observable<APIResult<Search, APIErrorMessage>> {
         let params = [("query", searchText)]
         
         return ChuckNorrisAPI.shared.buildRequest(pathComponent: "search", params: params)
-            .catchAndReturn(.failure(.noConnection))
+            .catchAndReturn(.failure(.singleMessage(.noConnection)))
             .map { result in
                 do {
                     switch result {
@@ -25,7 +25,7 @@ class TextSearchViewModel: ViewModel {
                         return .failure(err)
                     }
                 } catch {
-                    return .failure(.parseError)
+                    return .failure(.singleMessage(.parseError))
                 }
             }
     }
