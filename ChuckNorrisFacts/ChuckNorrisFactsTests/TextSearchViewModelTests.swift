@@ -18,7 +18,8 @@ class TextSearchViewModelTests: XCTestCase {
     /// primeiro seguinte (resultado da requisição).
     func test_searchedFacts() {
         let sut = TextSearchViewModel()
-        sut.searchFacts("cook")
+        
+        sut.searchFact("cook")
         let searchedResult = try! sut.facts
             .skip(1)
             .toBlocking()
