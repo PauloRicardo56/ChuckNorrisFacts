@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites name='ChuckNorrisFactsTests.xctest' tests='6' failures='0'>
+  <testsuite name='ChuckNorrisFactsTests.ChuckNorrisAPITests' tests='3' failures='0'>
+    <testcase classname='ChuckNorrisFactsTests.ChuckNorrisAPITests' name='test_randomFactsAPICall' time='0.003'/>
+    <testcase classname='ChuckNorrisFactsTests.ChuckNorrisAPITests' name='test_restError' time='1.042'/>
+    <testcase classname='ChuckNorrisFactsTests.ChuckNorrisAPITests' name='test_textSearchAPICall' time='0.692'/>
+  </testsuite>
+  <testsuite name='ChuckNorrisFactsTests.ReactiveUITests' tests='2' failures='0'>
+    <testcase classname='ChuckNorrisFactsTests.ReactiveUITests' name='test_biggerFontAccordingToTextSize' time='0.007'/>
+    <testcase classname='ChuckNorrisFactsTests.ReactiveUITests' name='test_smallerFontAccordingToTextSize' time='0.004'/>
+  </testsuite>
+  <testsuite name='ChuckNorrisFactsTests.TextSearchViewModelTests' tests='1' failures='0'>
+    <testcase classname='ChuckNorrisFactsTests.TextSearchViewModelTests' name='test_searchedFacts' time='0.299'/>
+  </testsuite>
+</testsuites>
