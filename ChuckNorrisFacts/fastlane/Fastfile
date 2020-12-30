@@ -27,4 +27,11 @@ platform :ios do
     run_tests(scheme: "ChuckNorrisFactsTests",
               devices: ["iPhone 12 Pro Max"])
   end
+
+  desc "App Store deployment"
+  lane :release do
+    build_app(scheme: "ChuckNorrisFacts",
+              workspace: "ChuckNorrisFacts.xcworkspace",
+     	      include_bitcode: true)
+  end
 end

@@ -26,6 +26,11 @@ Generate new localized screenshots
 fastlane ios tests
 ```
 Run application tests
+### ios release
+```
+fastlane ios release
+```
+App Store deployment
 
 ----
 

@@ -1,0 +1,16 @@
+git_url("https://github.com/PauloRicardo56/certificates")
+
+storage_mode("git")
+
+type("development") # The default type, can be: appstore, adhoc, enterprise or development
+
+# app_identifier(["tools.fastlane.app", "tools.fastlane.app2"])
+# username("user@fastlane.tools") # Your Apple Developer Portal username
+
+# For all available options run `fastlane match --help`
+# Remove the # in the beginning of the line to enable the other options
+
+# The docs are available on https://docs.fastlane.tools/actions/match
+
+# git ssh authentication
+# match(git_basic_authorization: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCS1KSFN+0QCtX8Avf7OqBSXESLIQjHV2CJTHt8MipGsTvPrjbnDCBETCOGZmseYME3pnJ6qPJCQ6yHOqb+aCGsb702RQqVhyZi6K5Le0dutgPIDUjkV1cYfhMuDrEp/wKjNU03EK3jVC8Gg5eg4ZGOWzdxkwtemuMxc123WMFOTfBqYuSH5OOvews8I3Db8z/aWST+XfaY0EkKNSsLMtKKvANfY5mBqsIWrHCZBwLSuPyswXf3jG1NqdHlY5PVyYBqi1vXFuj3VjZ4fWgg4Lxh+SeLnRGAWRnZJo2YIJjXzzv/NihiBL3qcwm6EeMEnSZrrmSyU+R3w2D61x8GDsaMjVCwJ2zBTtgcV3VcwmQXfSu4/WW+boGFdS5flVMAAVAaL9syuV9nlOuHhI8WFRoOYncpLpSCCagYjgcD+OKHzHFfdtGw7Mf7YMPUjpS7u0Zz8v/YkdVJ+dzqIUtwcfkkKNTtm12toN3WII4a02TDpMUPccCmcB/Q9tTIICIcpTZmFRY3VbRA0xgqSb3If4B2htq7ydjfM5A44iyrs+zv3Nmq9/jbT5fddDYykW/ClhRrqm6yLiEzD/eDRGA/eNZHYRkW7hS9bvphNEG6LYAA2gb/hrBRx9Lf5y1ezrJYlBIfQt7bYj3602vDzBu85Mt/lxoBLzUBfuunMUrhscsWWw== praraujo.vieira@gmail.com')
