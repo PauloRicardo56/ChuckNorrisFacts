@@ -28,9 +28,11 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(emptyFactListView)
-        view.backgroundColor = .white
+        view.backgroundColor = Colors.background.uiColor
         
         navigationItem.leftBarButtonItem = .init(customView: searchBar)
+        navigationController!.navigationBar.barTintColor = Colors.foreground.uiColor
+        navigationController!.navigationBar.isTranslucent = false
         
         bindViewModel()
         subscribeSearchActivity()
@@ -100,7 +102,7 @@ extension InitialViewController {
                 let indexPath = IndexPath(row: index, section: 0)
                 let cell = tableView.dequeueReusableCell(withIdentifier: "factCell", for: indexPath) as! FactCell
                 cell.valueText.text = element.value
-                cell.share.setImage(UIImage(systemName: "check"), for: .normal)
+                cell.share.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
                 cell.share.rx.tap
                     .asSignal()
                     .emit(onNext: { [weak self] in self?.coordinator?.share(url: element.url) })

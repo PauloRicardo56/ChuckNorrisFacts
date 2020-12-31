@@ -15,13 +15,24 @@ class FactSearchBar: UISearchBar {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        sizeToFit()
+        
+        setupLayout()
         
         setCancelButtonShown()
         setCancelButtonClicked()
     }
     
     // MARK: Private methods
+    private func setupLayout() {
+        let textField = value(forKey: "searchField") as? UITextField
+        let searchIcon = textField?.leftView
+        
+        textField?.backgroundColor = Colors.background.uiColor
+        searchIcon?.tintColor = Colors.orange.uiColor
+        tintColor = Colors.font.uiColor
+        sizeToFit()
+    }
+    
     private func setCancelButtonShown() {
         let beginEditing: Observable<Bool> = rx.textDidBeginEditing
             .map { true }
