@@ -14,11 +14,30 @@ class InitialViewController: UIViewController {
     let bag = DisposeBag()
     let viewModel: TextSearchViewModel
     var coordinator: AppCoordinator?
-    
+    var searchInput: Driver<String>?
+
     // MARK: Views
-    let tableView = FactsListTableView()
-    let loadingView = LoadingView()
-    var searchBar = FactSearchBar()
+    let tableView: FactsListTableView = {
+        let table = FactsListTableView()
+        table.backgroundColor = .clear
+        table.separatorStyle = .none
+        table.allowsSelection = false
+        table.translatesAutoresizingMaskIntoConstraints = false
+        return table
+    }()
+    
+    let loadingView: LoadingView = {
+        let view = LoadingView()
+        view.backgroundColor = Colors.background.uiColor
+        view.alpha = 0.9
+        return view
+    }()
+    
+    var searchBar: FactSearchBar = {
+        let search = FactSearchBar()
+        search.tintColor = Colors.font.uiColor
+        return search
+    }()
     
     init(viewModel: TextSearchViewModel) {
         self.viewModel = viewModel
@@ -35,10 +54,19 @@ class InitialViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = Colors.foreground.uiColor
         navigationController?.navigationBar.isTranslucent = false
         
+        bindSearchInput()
         bindViewModel()
         subscribeSearchActivity()
         changeViewWhenAPIResponse()
         setupTableViewDataSrouce()
+    }
+    
+    private func bindSearchInput() {
+        self.searchInput = searchBar.rx.searchButtonClicked
+            .map { [weak self] in self?.searchBar.text ?? "" }
+            .filter { !$0.isEmpty }
+            .share(replay: 1)
+            .asDriver(onErrorJustReturn: "")
     }
     
     // MARK: - View model binds
@@ -48,8 +76,8 @@ class InitialViewController: UIViewController {
     }
     
     private func bindSearchFact() {
-        searchInput()
-            .subscribe { [weak self] search in self?.viewModel.searchFact(search) }
+        searchInput?
+            .drive { [weak self] search in self?.viewModel.searchFact(search) }
             .disposed(by: bag)
     }
     
@@ -65,26 +93,20 @@ class InitialViewController: UIViewController {
     
     // MARK: - View binds
     private func subscribeSearchActivity() {
-        searchInput()
+        searchInput?
             .map { _ in false }
-            .subscribe(loadingView.activityIndicator.rx.isHidden)
+            .drive(loadingView.activityIndicator.rx.isHidden)
             .disposed(by: bag)
         
-        searchInput()
+        searchInput?
             .map { _ in false }
-            .subscribe(loadingView.rx.isHidden)
+            .drive(loadingView.rx.isHidden)
             .disposed(by: bag)
         
-        searchInput()
+        searchInput?
             .map { _ in true }
-            .subscribe(searchBar.rx.resignFirstResponder)
+            .drive(searchBar.rx.resignFirstResponder)
             .disposed(by: bag)
-    }
-    
-    private func searchInput() -> Observable<String> {
-        searchBar.rx.searchButtonClicked
-            .map { [weak self] in self?.searchBar.text ?? "" }
-            .filter { !$0.isEmpty }
     }
     
     private func changeViewWhenAPIResponse() {

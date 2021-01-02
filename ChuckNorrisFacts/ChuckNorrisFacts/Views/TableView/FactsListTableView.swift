@@ -13,11 +13,6 @@ class FactsListTableView: UITableView, ReactiveUI {
     init() {
         super.init(frame: .zero, style: .plain)
         register(FactCell.self, forCellReuseIdentifier: "factCell")
-        
-        backgroundColor = .clear
-        separatorStyle = .none
-        allowsSelection = false
-        translatesAutoresizingMaskIntoConstraints = false
     }
     
     override func didMoveToSuperview() {

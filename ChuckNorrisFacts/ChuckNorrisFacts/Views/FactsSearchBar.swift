@@ -25,12 +25,10 @@ class FactSearchBar: UISearchBar {
         return indicator
     }()
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupTextField()
-        tintColor = Colors.font.uiColor
         sizeToFit()
         
         setCancelButtonShown()
