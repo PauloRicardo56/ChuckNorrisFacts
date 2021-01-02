@@ -13,24 +13,46 @@ class FactSearchBar: UISearchBar {
     
     let bag = DisposeBag()
     
+    var bindIndicator: Binder<Bool> {
+        indicator.rx.isHidden
+    }
+    
+    private let indicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(frame: .zero)
+        indicator.startAnimating()
+        indicator.isHidden = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupLayout()
+        setupTextField()
+        tintColor = Colors.font.uiColor
+        sizeToFit()
         
         setCancelButtonShown()
         setCancelButtonClicked()
     }
     
     // MARK: Private methods
-    private func setupLayout() {
-        let textField = value(forKey: "searchField") as? UITextField
-        let searchIcon = textField?.leftView
+    private func setupTextField() {
+        guard let textField = value(forKey: "searchField") as? UITextField else { return }
+        let searchIcon = textField.leftView
         
-        textField?.backgroundColor = Colors.background.uiColor
+        textField.font = Fonts.body(size: 17).font
+        textField.backgroundColor = Colors.background.uiColor
         searchIcon?.tintColor = Colors.orange.uiColor
-        tintColor = Colors.font.uiColor
-        sizeToFit()
+        
+        textField.addSubview(indicator)
+        NSLayoutConstraint.activate([
+            indicator.heightAnchor.constraint(equalTo: textField.heightAnchor, multiplier: 0.9),
+            indicator.widthAnchor.constraint(equalTo: indicator.heightAnchor),
+            indicator.trailingAnchor.constraint(equalTo: textField.trailingAnchor),
+            indicator.centerYAnchor.constraint(equalTo: textField.centerYAnchor)
+        ])
     }
     
     private func setCancelButtonShown() {

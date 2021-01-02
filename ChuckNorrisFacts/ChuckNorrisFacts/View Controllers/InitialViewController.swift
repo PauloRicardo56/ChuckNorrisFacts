@@ -17,7 +17,7 @@ class InitialViewController: UIViewController {
     
     // MARK: Views
     let tableView = FactsListTableView()
-    let emptyFactListView = EmptyFactsListView()
+    let loadingView = LoadingView()
     var searchBar = FactSearchBar()
     
     init(viewModel: TextSearchViewModel) {
@@ -27,12 +27,13 @@ class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(emptyFactListView)
+        view.addSubview(tableView)
+        view.addSubview(loadingView)
         view.backgroundColor = Colors.background.uiColor
         
         navigationItem.leftBarButtonItem = .init(customView: searchBar)
-        navigationController!.navigationBar.barTintColor = Colors.foreground.uiColor
-        navigationController!.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = Colors.foreground.uiColor
+        navigationController?.navigationBar.isTranslucent = false
         
         bindViewModel()
         subscribeSearchActivity()
@@ -53,9 +54,9 @@ class InitialViewController: UIViewController {
     }
     
     private func bindErrors() {
-        self.viewModel.error
+        viewModel.error
             .asDriver(onErrorJustReturn: .singleMessage(.serverError))
-            .do { [weak self] _ in self?.emptyFactListView.activityIndicator.isHidden = true }
+            .do { [weak self] _ in self?.loadingView.activityIndicator.isHidden = true }
             .drive { [weak self] err in
                 self?.present(ErrorMessageAlert(with: err), animated: true)
             }
@@ -66,7 +67,12 @@ class InitialViewController: UIViewController {
     private func subscribeSearchActivity() {
         searchInput()
             .map { _ in false }
-            .subscribe(emptyFactListView.activityIndicator.rx.isHidden)
+            .subscribe(loadingView.activityIndicator.rx.isHidden)
+            .disposed(by: bag)
+        
+        searchInput()
+            .map { _ in false }
+            .subscribe(loadingView.rx.isHidden)
             .disposed(by: bag)
     }
     
@@ -77,14 +83,9 @@ class InitialViewController: UIViewController {
     }
     
     private func changeViewWhenAPIResponse() {
-        self.viewModel.facts
-            .asDriver(onErrorJustReturn: [])
+        viewModel.facts
             .map { _ in true }
-            .drive { [weak self] _ in
-                guard let self = self else { return }
-                self.emptyFactListView.removeFromSuperview()
-                self.view.addSubview(self.tableView)
-            }
+            .subscribe(loadingView.rx.isHidden)
             .disposed(by: bag)
     }
     

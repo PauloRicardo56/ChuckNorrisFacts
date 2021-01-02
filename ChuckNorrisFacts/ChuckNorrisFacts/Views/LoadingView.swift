@@ -10,13 +10,15 @@ import UIKit
 import RxSwift
 
 
-class EmptyFactsListView: UIView {
+class LoadingView: UIView {
     
     // MARK: Views
     let stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 10
+//        stack.layer.cornerRadius = 10
+//        stack.backgroundColor = Colors.background.uiColor
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -47,6 +49,9 @@ class EmptyFactsListView: UIView {
     init() {
         super.init(frame: .zero)
         setupView()
+        
+        backgroundColor = Colors.background.uiColor
+        alpha = 0.8
     }
     
     override func didMoveToSuperview() {
@@ -66,7 +71,7 @@ class EmptyFactsListView: UIView {
     }
 }
 
-extension EmptyFactsListView: ViewCodable {
+extension LoadingView: ViewCodable {
     func setupViewHierarchy() {
         addSubview(stackView)
         stackView.addArrangedSubview(icon)

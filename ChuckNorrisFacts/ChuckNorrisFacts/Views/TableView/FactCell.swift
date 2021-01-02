@@ -29,10 +29,12 @@ class FactCell: UITableViewCell, ReactiveUI {
         button.tintColor = Colors.orange.uiColor
         return button
     }()
-    // TODO: category view
-    let category: UILabel = {
-        let label = UILabel()
-        label.textColor = Colors.orange.uiColor
+    let category: CategoryLabel = {
+        let label = CategoryLabel()
+        label.font = Fonts.category(size: 14).font
+        label.textColor = .white
+        label.layer.cornerRadius = 7
+        label.layer.backgroundColor = Colors.orange.cgColor
         return label
     }()
     
@@ -56,7 +58,7 @@ class FactCell: UITableViewCell, ReactiveUI {
     }()
     var bottomStack: UIStackView = {
         let stack = UIStackView()
-        stack.distribution = .equalCentering
+        stack.distribution = .equalSpacing
         return stack
     }()
     
@@ -65,11 +67,6 @@ class FactCell: UITableViewCell, ReactiveUI {
         
         setupView()
         setupLayout()
-        
-        for family in UIFont.familyNames {
-            print(UIFont.fontNames(forFamilyName: family))
-            print()
-        }
         
         reactiveFontSize(of: valueText)
             .subscribe(valueText.rx.font)

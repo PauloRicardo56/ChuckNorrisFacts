@@ -17,7 +17,7 @@ extension ReactiveUI {
         of label: UILabel,
         with charLimit: Int = 80,
         smallerFontSize: CGFloat = 14,
-        biggerFontSize: CGFloat = 22
+        biggerFontSize: CGFloat = 24
     ) -> Observable<UIFont> {
         
         label.rx.observe(String.self, "text")
@@ -25,9 +25,9 @@ extension ReactiveUI {
             .map { textCount -> UIFont in
                 switch textCount {
                 case ...charLimit:
-                    return UIFont(name: "Courier", size: biggerFontSize) ?? .systemFont(ofSize: biggerFontSize)
+                    return Fonts.body(size: biggerFontSize).font ?? .systemFont(ofSize: biggerFontSize)
                 default:
-                    return UIFont(name: "Courier", size: smallerFontSize) ?? .systemFont(ofSize: smallerFontSize)
+                    return Fonts.body(size: smallerFontSize).font ?? .systemFont(ofSize: biggerFontSize)
                 }
             }
     }
