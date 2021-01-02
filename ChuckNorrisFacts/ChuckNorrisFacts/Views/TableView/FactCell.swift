@@ -7,7 +7,6 @@
 
 import Foundation
 import RxSwift
-import RxCocoa
 import UIKit
 
 class FactCell: UITableViewCell, ReactiveUI {
@@ -17,25 +16,25 @@ class FactCell: UITableViewCell, ReactiveUI {
     var icon: UIImageView = {
         let view = UIImageView(image: UIImage(named: "chuckNorris"))
         view.contentMode = .scaleAspectFit
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     var valueText: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = Colors.font.uiColor
         return label
     }()
     var share: UIButton = {
         let button = UIButton()
-        button.setTitle("Share", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = Colors.orange.uiColor
         return button
     }()
-    // TODO: category view
-    let category: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+    let category: CategoryLabel = {
+        let label = CategoryLabel()
+        label.font = Fonts.courierBold(size: 14).font
+        label.textColor = .white
+        label.layer.cornerRadius = 7
+        label.layer.backgroundColor = Colors.orange.cgColor
         return label
     }()
     
@@ -48,7 +47,6 @@ class FactCell: UITableViewCell, ReactiveUI {
     var iconStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     var innerStack: UIStackView = {
@@ -60,8 +58,7 @@ class FactCell: UITableViewCell, ReactiveUI {
     }()
     var bottomStack: UIStackView = {
         let stack = UIStackView()
-        stack.distribution = .equalCentering
-        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.distribution = .equalSpacing
         return stack
     }()
     
@@ -69,6 +66,8 @@ class FactCell: UITableViewCell, ReactiveUI {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupView()
+        setupLayout()
+        
         reactiveFontSize(of: valueText)
             .subscribe(valueText.rx.font)
             .disposed(by: bag)
@@ -76,11 +75,18 @@ class FactCell: UITableViewCell, ReactiveUI {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        /// Necessário para não termos mais de um subscriber por cellquando no dequeue da tableView
+        /// Necessário para não termos mais de um subscriber por cell quando no dequeue da tableView
         bag = DisposeBag()
         reactiveFontSize(of: valueText)
             .subscribe(valueText.rx.font)
             .disposed(by: bag)
+    }
+    
+    private func setupLayout() {
+        backgroundColor = .clear
+        backgroundStack.spacing = 10
+        backgroundStack.layer.cornerRadius = 15
+        backgroundStack.backgroundColor = Colors.foreground.uiColor
     }
     
     required init?(coder: NSCoder) {
@@ -118,15 +124,21 @@ extension FactCell: ViewCodable {
             iconStack.widthAnchor.constraint(
                 equalTo: backgroundStack.widthAnchor,
                 multiplier: 0.1),
-            innerStack.widthAnchor.constraint(
-                equalTo: backgroundStack.widthAnchor,
-                multiplier: 0.85),
+            iconStack.leadingAnchor.constraint(
+                equalTo: backgroundStack.leadingAnchor,
+                constant: 10),
+            iconStack.topAnchor.constraint(
+                equalTo: backgroundStack.topAnchor,
+                constant: 10),
             innerStack.topAnchor.constraint(
-                equalTo: contentView.topAnchor,
+                equalTo: backgroundStack.topAnchor,
                 constant: 10),
             innerStack.bottomAnchor.constraint(
-                equalTo: contentView.bottomAnchor,
-                constant: -10)
+                equalTo: backgroundStack.bottomAnchor,
+                constant: -10),
+            innerStack.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor,
+                constant: -30)
         ])
     }
     

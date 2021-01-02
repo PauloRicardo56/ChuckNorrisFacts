@@ -10,15 +10,30 @@ import UIKit
 import RxSwift
 
 
-class EmptyFactsListView: UIView {
+class LoadingView: UIView {
     
     // MARK: Views
     let stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.spacing = 10
+        stack.spacing = 20
+        stack.alignment = .center
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
+    }()
+    
+    let title: UILabel = {
+        let label = UILabel()
+        label.text = "Chuck Norris\nFacts"
+        label.font = Fonts._04b(size: 30).font
+        label.textColor = Colors.orange.uiColor
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.layer.shadowOffset = .init(width: 1, height: 1)
+        label.layer.shadowRadius = 0
+        label.layer.shadowOpacity = 1
+        label.layer.shadowColor = Colors.font.cgColor
+        return label
     }()
     
     let icon: UIImageView = {
@@ -27,13 +42,13 @@ class EmptyFactsListView: UIView {
         return view
     }()
     
-    let label: UILabel = {
+    let copyright: UILabel = {
         let label = UILabel()
         label.text = "Powered by:\napi.chucknorris.io"
-        label.font = .systemFont(ofSize: 14)
+        label.font = Fonts.courierBold(size: 14).font
+        label.textColor = Colors.font.uiColor
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -41,12 +56,16 @@ class EmptyFactsListView: UIView {
         let indicator = UIActivityIndicatorView()
         indicator.startAnimating()
         indicator.isHidden = true
+        indicator.color = Colors.orange.uiColor
         return indicator
     }()
     
     init() {
         super.init(frame: .zero)
         setupView()
+        
+        backgroundColor = Colors.background.uiColor
+        alpha = 0.9
     }
     
     override func didMoveToSuperview() {
@@ -66,21 +85,19 @@ class EmptyFactsListView: UIView {
     }
 }
 
-extension EmptyFactsListView: ViewCodable {
+extension LoadingView: ViewCodable {
     func setupViewHierarchy() {
         addSubview(stackView)
         stackView.addArrangedSubview(icon)
-        stackView.addArrangedSubview(label)
+        stackView.addArrangedSubview(title)
+        stackView.addArrangedSubview(copyright)
         stackView.addArrangedSubview(activityIndicator)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            label.widthAnchor.constraint(
-                equalTo: widthAnchor,
-                multiplier: 0.5)
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
 }

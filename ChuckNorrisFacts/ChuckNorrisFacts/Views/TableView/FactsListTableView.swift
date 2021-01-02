@@ -6,18 +6,18 @@
 //
 
 import Foundation
-import RxSwift
-import RxCocoa
 import UIKit
 
 class FactsListTableView: UITableView, ReactiveUI {
     
-    let bag = DisposeBag()
-    
     init() {
         super.init(frame: .zero, style: .plain)
-        translatesAutoresizingMaskIntoConstraints = false
+        
         register(FactCell.self, forCellReuseIdentifier: "factCell")
+        backgroundColor = .clear
+        separatorStyle = .none
+        allowsSelection = false
+        translatesAutoresizingMaskIntoConstraints = false
     }
     
     override func didMoveToSuperview() {
