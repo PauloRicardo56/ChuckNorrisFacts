@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class TextSearchViewModel: ViewModel {
+class TextSearchViewModel {
     
     let bag = DisposeBag()
     let error = PublishSubject<APIErrorMessage>()

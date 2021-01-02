@@ -107,14 +107,12 @@ extension InitialViewController {
             .bind(to: self.tableView.rx.items) { (tableView: UITableView, index: Int, element: Fact) in
                 let indexPath = IndexPath(row: index, section: 0)
                 let cell = tableView.dequeueReusableCell(withIdentifier: "factCell", for: indexPath) as! FactCell
-                cell.valueText.text = element.value
-                cell.share.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
-                cell.share.rx.tap
-                    .asSignal()
-                    .emit(onNext: { [weak self] in self?.coordinator?.share(url: element.url) })
-                    .disposed(by: cell.bag)
-                cell.category.text = element.categories.first ?? "uncategorized"
-                return cell
+                return CellBuilder(build: cell)
+                    .withValueText(text: element.value)
+                    .withShareButton(image: "square.and.arrow.up")
+                    .withShareButtonAction { [weak self] in self?.coordinator?.share(url: element.url) }
+                    .withCategoryText(text: element.categories.first)
+                    .build()
             }
             .disposed(by: bag)
     }
