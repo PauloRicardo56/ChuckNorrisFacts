@@ -42,7 +42,7 @@ class FactSearchBar: UISearchBar {
         guard let textField = value(forKey: "searchField") as? UITextField else { return }
         let searchIcon = textField.leftView
         
-        textField.font = Fonts.body(size: 17).font
+        textField.font = Fonts.courier(size: 17).font
         textField.backgroundColor = Colors.background.uiColor
         searchIcon?.tintColor = Colors.orange.uiColor
         
@@ -75,5 +75,13 @@ class FactSearchBar: UISearchBar {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension Reactive where Base: UISearchBar {
+    var resignFirstResponder: Binder<Bool> {
+        Binder<Bool>(base) {
+            if $1 { $0.resignFirstResponder() }
+        }
     }
 }

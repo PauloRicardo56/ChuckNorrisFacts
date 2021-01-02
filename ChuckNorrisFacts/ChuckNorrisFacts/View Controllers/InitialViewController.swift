@@ -74,6 +74,11 @@ class InitialViewController: UIViewController {
             .map { _ in false }
             .subscribe(loadingView.rx.isHidden)
             .disposed(by: bag)
+        
+        searchInput()
+            .map { _ in true }
+            .subscribe(searchBar.rx.resignFirstResponder)
+            .disposed(by: bag)
     }
     
     private func searchInput() -> Observable<String> {

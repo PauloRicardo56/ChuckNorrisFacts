@@ -25,9 +25,9 @@ extension ReactiveUI {
             .map { textCount -> UIFont in
                 switch textCount {
                 case ...charLimit:
-                    return Fonts.body(size: biggerFontSize).font ?? .systemFont(ofSize: biggerFontSize)
+                    return Fonts.courier(size: biggerFontSize).font ?? .systemFont(ofSize: biggerFontSize)
                 default:
-                    return Fonts.body(size: smallerFontSize).font ?? .systemFont(ofSize: biggerFontSize)
+                    return Fonts.courier(size: smallerFontSize).font ?? .systemFont(ofSize: biggerFontSize)
                 }
             }
     }

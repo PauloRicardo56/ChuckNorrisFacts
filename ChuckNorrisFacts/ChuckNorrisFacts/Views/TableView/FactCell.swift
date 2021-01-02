@@ -31,7 +31,7 @@ class FactCell: UITableViewCell, ReactiveUI {
     }()
     let category: CategoryLabel = {
         let label = CategoryLabel()
-        label.font = Fonts.category(size: 14).font
+        label.font = Fonts.courierBold(size: 14).font
         label.textColor = .white
         label.layer.cornerRadius = 7
         label.layer.backgroundColor = Colors.orange.cgColor

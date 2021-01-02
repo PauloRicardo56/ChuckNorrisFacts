@@ -9,15 +9,18 @@ import Foundation
 import UIKit
 
 enum Fonts {
-    case body(size: CGFloat)
-    case category(size: CGFloat)
+    case courier(size: CGFloat)
+    case courierBold(size: CGFloat)
+    case _04b(size: CGFloat)
     
     var font: UIFont? {
         switch self {
-        case .body(let size):
+        case .courier(let size):
             return UIFont(name: "Courier", size: size)
-        case .category(let size):
+        case .courierBold(let size):
             return UIFont(name: "Courier-Bold", size: size)
+        case ._04b(let size):
+            return UIFont(name: "04B30", size: size)
         }
     }
 }
