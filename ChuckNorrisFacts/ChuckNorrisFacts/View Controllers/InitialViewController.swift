@@ -85,7 +85,8 @@ class InitialViewController: UIViewController {
                 self?.loadingView.activityIndicator.isHidden = true
             }
             .drive { [weak self] err in
-                self?.present(ErrorMessageAlert(with: err), animated: true)
+                self?.coordinator?.error(vc: self, err: err)
+//                self?.present(ErrorMessageAlert(with: err), animated: true)
             }
             .disposed(by: bag)
     }

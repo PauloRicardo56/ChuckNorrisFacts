@@ -44,6 +44,7 @@
 		23EA82782594163900DF4B09 /* ReactiveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA82772594163900DF4B09 /* ReactiveUITests.swift */; };
 		23EA827D2594220A00DF4B09 /* ReactiveUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA827C2594220900DF4B09 /* ReactiveUI.swift */; };
 		23EA82832594235000DF4B09 /* ReactiveUIMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA82822594235000DF4B09 /* ReactiveUIMock.swift */; };
+		23F6766C25A2804000DCB4CA /* FactSearchViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F6766B25A2804000DCB4CA /* FactSearchViewModelMock.swift */; };
 		9ABA59A2775DC40168585DEA /* Pods_ChuckNorrisFacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EFE2467932EC3F90F42C895 /* Pods_ChuckNorrisFacts.framework */; };
 		F8AE9F813D665C022496FF0F /* Pods_ChuckNorrisFactsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 869A5A0BDE17F64C604159FB /* Pods_ChuckNorrisFactsTests.framework */; };
 /* End PBXBuildFile section */
@@ -109,6 +110,7 @@
 		23EA82772594163900DF4B09 /* ReactiveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveUITests.swift; sourceTree = "<group>"; };
 		23EA827C2594220900DF4B09 /* ReactiveUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveUI.swift; sourceTree = "<group>"; };
 		23EA82822594235000DF4B09 /* ReactiveUIMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveUIMock.swift; sourceTree = "<group>"; };
+		23F6766B25A2804000DCB4CA /* FactSearchViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactSearchViewModelMock.swift; sourceTree = "<group>"; };
 		5F694B12AA8E8B26ACEFFA03 /* Pods-ChuckNorrisFacts-ChuckNorrisFactsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuckNorrisFacts-ChuckNorrisFactsUITests.debug.xcconfig"; path = "Target Support Files/Pods-ChuckNorrisFacts-ChuckNorrisFactsUITests/Pods-ChuckNorrisFacts-ChuckNorrisFactsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A85897DFA177C325C348B54 /* Pods_ChuckNorrisFacts_ChuckNorrisFactsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChuckNorrisFacts_ChuckNorrisFactsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F12900E97C05FF6203F0CD7 /* Pods-ChuckNorrisFacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuckNorrisFacts.release.xcconfig"; path = "Target Support Files/Pods-ChuckNorrisFacts/Pods-ChuckNorrisFacts.release.xcconfig"; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			children = (
 				23EA82822594235000DF4B09 /* ReactiveUIMock.swift */,
 				237404F025A2242A00588117 /* ChuckNorrisAPIMock.swift */,
+				23F6766B25A2804000DCB4CA /* FactSearchViewModelMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				23EA82782594163900DF4B09 /* ReactiveUITests.swift in Sources */,
 				23EA82252592B2DD00DF4B09 /* ChuckNorrisAPITests.swift in Sources */,
 				2356599B25A24BC1003FC26B /* FactsListViewSpec.swift in Sources */,
+				23F6766C25A2804000DCB4CA /* FactSearchViewModelMock.swift in Sources */,
 				237404F625A2252D00588117 /* Search+Stub.swift in Sources */,
 				237404F125A2242A00588117 /* ChuckNorrisAPIMock.swift in Sources */,
 				2399097225A2201100B15819 /* Fact+Stub.swift in Sources */,

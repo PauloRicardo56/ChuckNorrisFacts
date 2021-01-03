@@ -39,4 +39,8 @@ class AppCoordinator: Coordinator {
         let vc = UIActivityViewController(activityItems: [URL(string: url)!], applicationActivities: nil)
         navigationController.present(vc, animated: true)
     }
+    
+    func error(vc: UIViewController?, err: APIErrorMessage?) {
+        vc?.present(ErrorMessageAlert(with: err), animated: true)
+    }
 }
