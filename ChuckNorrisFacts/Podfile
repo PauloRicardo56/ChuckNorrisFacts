@@ -13,6 +13,9 @@ target 'ChuckNorrisFacts' do
     # Pods for testing
     pod 'RxBlocking', '6.0.0-rc.2'
     pod 'RxTest', '6.0.0-rc.2'
+    pod 'Nimble-Snapshots'
+    pod 'Quick'
+    pod 'iOSSnapshotTestCase'
   end
 
   target 'ChuckNorrisFactsUITests' do

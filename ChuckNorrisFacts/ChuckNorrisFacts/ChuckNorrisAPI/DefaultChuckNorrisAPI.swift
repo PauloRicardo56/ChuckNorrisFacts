@@ -14,7 +14,7 @@ class DefaultChuckNorrisAPI: ChuckNorrisAPI {
     
     /// Método de construção da request utilizando RxCococa
     func buildRequest(
-        method: String,
+        method: HTTPMethod,
         pathComponent: String,
         params: [(String, String)]
     ) -> Observable<APIResult<Data, APIErrorMessage>> {
@@ -31,7 +31,7 @@ class DefaultChuckNorrisAPI: ChuckNorrisAPI {
                 .map { URLQueryItem(name: $0.0, value: $0.1) }
             
             request = .init(url: urlComponents.url!)
-            request.httpMethod = method
+            request.httpMethod = method.rawValue
             
             observer.onNext(request)
             observer.onCompleted()

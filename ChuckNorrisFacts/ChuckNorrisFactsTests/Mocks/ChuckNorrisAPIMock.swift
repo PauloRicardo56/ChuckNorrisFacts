@@ -15,7 +15,7 @@ class ChuckNorrisAPIMock: ChuckNorrisAPI {
     var error: APIErrorMessage?
     
     func buildRequest(
-        method: String,
+        method: HTTPMethod,
         pathComponent: String,
         params: [(String, String)]
     ) -> Observable<APIResult<Data, APIErrorMessage>> {

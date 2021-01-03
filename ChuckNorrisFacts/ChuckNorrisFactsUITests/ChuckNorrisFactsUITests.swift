@@ -33,7 +33,7 @@ class ChuckNorrisFactsUITests: XCTestCase {
         
         app.buttons["Search"].tap()
         
-        app.tables.staticTexts["Share"].tap()
+        app.tables.buttons["Share"].tap()
         snapshot("ShareFact")
         
         app.navigationBars["UIActivityContentView"].buttons["Close"].tap()

@@ -25,6 +25,7 @@ class AppCoordinator: Coordinator {
         initialViewModel = DefaultFactSearchViewModel(chuckNorrisAPI: defaultChuckNorrisAPI)
         
         let vc = InitialViewController(viewModel: initialViewModel)
+        vc.setSubscribers()
         navigationController = .init(rootViewController: vc)
         vc.coordinator = self
     }

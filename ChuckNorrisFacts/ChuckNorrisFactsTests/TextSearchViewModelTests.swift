@@ -13,6 +13,7 @@ import RxSwift
 class TextSearchViewModelTests: XCTestCase {
     
     func test_searchedFacts() {
+        let bag = DisposeBag()
         let apiMock = ChuckNorrisAPIMock()
         let sut = DefaultFactSearchViewModel(chuckNorrisAPI: apiMock)
         
@@ -26,6 +27,6 @@ class TextSearchViewModelTests: XCTestCase {
             .subscribe { search in
                 XCTAssertEqual(search.first?.value, expectedFact.value)
             }
-            .disposed(by: DisposeBag())
+            .disposed(by: bag)
     }
 }

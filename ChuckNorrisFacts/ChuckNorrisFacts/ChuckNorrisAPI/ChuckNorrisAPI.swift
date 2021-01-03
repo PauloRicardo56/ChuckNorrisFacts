@@ -9,5 +9,14 @@ import Foundation
 import RxSwift
 
 protocol ChuckNorrisAPI {
-    func buildRequest(method: String, pathComponent: String, params: [(String, String)]) -> Observable<APIResult<Data, APIErrorMessage>>
+    func buildRequest(method: HTTPMethod, pathComponent: String, params: [(String, String)]) -> Observable<APIResult<Data, APIErrorMessage>>
+}
+
+enum HTTPMethod: String {
+    case GET
+    case POST
+    case DELETE
+    case PUT
+    case PATCH
+    case HEAD
 }

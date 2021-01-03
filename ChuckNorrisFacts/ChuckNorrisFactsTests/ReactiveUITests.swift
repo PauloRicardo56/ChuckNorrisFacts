@@ -13,7 +13,7 @@ class ReactiveUITests: XCTestCase {
     
     func test_biggerFontAccordingToTextSize() {
         let sut = ReactiveUIMock()
-        let expectedFontSize: CGFloat = 22
+        let expectedFontSize: CGFloat = 24
         
         for _ in 0..<80 { sut.textLabel.text?.append("a") }
         

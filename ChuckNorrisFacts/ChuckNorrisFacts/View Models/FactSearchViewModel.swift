@@ -1,5 +1,5 @@
 //
-//  TextSearchViewModel.swift
+//  FactSearchViewModel.swift
 //  ChuckNorrisFacts
 //
 //  Created by Paulo Ricardo on 22/12/20.
@@ -38,7 +38,7 @@ final class DefaultFactSearchViewModel: FactSearchViewModel {
     func didSearch(query: String) {
         let params = [("query", query)]
         
-        chuckNorrisAPI.buildRequest(method: "GET", pathComponent: "search", params: params)
+        chuckNorrisAPI.buildRequest(method: .GET, pathComponent: "search", params: params)
             .catchAndReturn(.failure(.singleMessage(.noConnection)))
             .subscribe(onNext: { [weak self] result in
                 do {
