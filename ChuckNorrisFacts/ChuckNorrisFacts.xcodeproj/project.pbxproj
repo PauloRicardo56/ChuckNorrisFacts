@@ -36,7 +36,6 @@
 		23EA82252592B2DD00DF4B09 /* ChuckNorrisAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA82242592B2DD00DF4B09 /* ChuckNorrisAPITests.swift */; };
 		23EA82352592B85800DF4B09 /* TextSearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA82342592B85800DF4B09 /* TextSearchViewModelTests.swift */; };
 		23EA82482592F11000DF4B09 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA82472592F10F00DF4B09 /* AppCoordinator.swift */; };
-		23EA82502592F52000DF4B09 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA824F2592F51F00DF4B09 /* Coordinator.swift */; };
 		23EA82782594163900DF4B09 /* ReactiveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA82772594163900DF4B09 /* ReactiveUITests.swift */; };
 		23EA827D2594220A00DF4B09 /* ReactiveUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA827C2594220900DF4B09 /* ReactiveUI.swift */; };
 		23EA82832594235000DF4B09 /* ReactiveUIMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA82822594235000DF4B09 /* ReactiveUIMock.swift */; };
@@ -97,7 +96,6 @@
 		23EA82242592B2DD00DF4B09 /* ChuckNorrisAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuckNorrisAPITests.swift; sourceTree = "<group>"; };
 		23EA82342592B85800DF4B09 /* TextSearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSearchViewModelTests.swift; sourceTree = "<group>"; };
 		23EA82472592F10F00DF4B09 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		23EA824F2592F51F00DF4B09 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		23EA82772594163900DF4B09 /* ReactiveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveUITests.swift; sourceTree = "<group>"; };
 		23EA827C2594220900DF4B09 /* ReactiveUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveUI.swift; sourceTree = "<group>"; };
 		23EA82822594235000DF4B09 /* ReactiveUIMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveUIMock.swift; sourceTree = "<group>"; };
@@ -215,7 +213,6 @@
 		23238D7C25910EAB00DB3FC0 /* ChuckNorrisFacts */ = {
 			isa = PBXGroup;
 			children = (
-				23EA824F2592F51F00DF4B09 /* Coordinator.swift */,
 				234CA52C259FFE8800637F3A /* Fonts */,
 				23EA8200259157E100DF4B09 /* Helpers */,
 				23238DB625911D7800DB3FC0 /* ChuckNorrisAPI */,
@@ -581,7 +578,6 @@
 				234CA520259FE08F00637F3A /* CategoryLabel.swift in Sources */,
 				234CA56F25A104D900637F3A /* CellBuilder.swift in Sources */,
 				23EA827D2594220A00DF4B09 /* ReactiveUI.swift in Sources */,
-				23EA82502592F52000DF4B09 /* Coordinator.swift in Sources */,
 				23514B342596833E00620D74 /* ErrorMessageAlert.swift in Sources */,
 				23238D8225910EAB00DB3FC0 /* InitialViewController.swift in Sources */,
 				2311C84E2591234200128535 /* Fact.swift in Sources */,

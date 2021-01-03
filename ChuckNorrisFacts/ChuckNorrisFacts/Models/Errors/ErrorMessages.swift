@@ -11,4 +11,5 @@ enum ErrorMessages: String {
     case noConnection = "No internet connection"
     case serverError = "Server error"
     case parseError = "Error while parsing"
+    case noFactFound = "No fact found with this query"
 }

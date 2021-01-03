@@ -12,9 +12,9 @@ import RxCocoa
 class InitialViewController: UIViewController {
     // MARK: Properties
     let bag = DisposeBag()
-    let viewModel: TextSearchViewModel
+    let viewModel: FactSearchViewModel
     var coordinator: AppCoordinator?
-    var searchInput: Driver<String>?
+    var searchQuery: Driver<String>?
 
     // MARK: Views
     let tableView: FactsListTableView = {
@@ -39,7 +39,7 @@ class InitialViewController: UIViewController {
         return search
     }()
     
-    init(viewModel: TextSearchViewModel) {
+    init(viewModel: FactSearchViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -54,82 +54,21 @@ class InitialViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = Colors.foreground.uiColor
         navigationController?.navigationBar.isTranslucent = false
         
-        bindSearchInput()
-        bindViewModel()
-        subscribeSearchActivity()
-        changeViewWhenAPIResponse()
-        setupTableViewDataSrouce()
+        bind(to: viewModel)
+        bindSearchBarQuery()
+        searchButtonClicked()
+        showLoadingView()
+        hideLoadingView()
+        bindKeyboardDismiss()
     }
     
-    private func bindSearchInput() {
-        self.searchInput = searchBar.rx.searchButtonClicked
-            .map { [weak self] in self?.searchBar.text ?? "" }
-            .filter { !$0.isEmpty }
-            .share(replay: 1)
-            .asDriver(onErrorJustReturn: "")
-    }
-    
-    // MARK: - View model binds
-    private func bindViewModel() {
-        bindSearchFact()
-        bindErrors()
-    }
-    
-    private func bindSearchFact() {
-        searchInput?
-            .drive { [weak self] search in self?.viewModel.searchFact(search) }
-            .disposed(by: bag)
-    }
-    
-    private func bindErrors() {
-        viewModel.error
-            .asDriver(onErrorJustReturn: .singleMessage(.serverError))
-            .do { [weak self] _ in self?.loadingView.activityIndicator.isHidden = true }
-            .drive { [weak self] err in
-                self?.present(ErrorMessageAlert(with: err), animated: true)
-            }
-            .disposed(by: bag)
-    }
-    
-    // MARK: - View binds
-    private func subscribeSearchActivity() {
-        searchInput?
-            .map { _ in false }
-            .drive(loadingView.activityIndicator.rx.isHidden)
-            .disposed(by: bag)
-        
-        searchInput?
-            .map { _ in false }
-            .drive(loadingView.rx.isHidden)
-            .disposed(by: bag)
-        
-        searchInput?
-            .map { _ in true }
-            .drive(searchBar.rx.resignFirstResponder)
-            .disposed(by: bag)
-    }
-    
-    private func changeViewWhenAPIResponse() {
+    // MARK: - View model bind
+    private func bind(to viewModel: FactSearchViewModel) {
         viewModel.facts
-            .map { _ in true }
-            .subscribe(loadingView.rx.isHidden)
-            .disposed(by: bag)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-// MARK: - TableView DataSource
-extension InitialViewController {
-    
-    private func setupTableViewDataSrouce() {
-        self.viewModel.facts
             .bind(to: self.tableView.rx.items) { (tableView: UITableView, index: Int, element: Fact) in
                 let indexPath = IndexPath(row: index, section: 0)
                 let cell = tableView.dequeueReusableCell(withIdentifier: "factCell", for: indexPath) as! FactCell
-                return CellBuilder(build: cell)
+                return CellBuilder(cell)
                     .withValueText(text: element.value)
                     .withShareButton(image: "square.and.arrow.up")
                     .withShareButtonAction { [weak self] in self?.coordinator?.share(url: element.url) }
@@ -137,5 +76,58 @@ extension InitialViewController {
                     .build()
             }
             .disposed(by: bag)
+        
+        viewModel.error
+            .asDriver(onErrorJustReturn: .singleMessage(.serverError))
+            .do { [weak self] _ in
+                self?.loadingView.activityIndicator.isHidden = true
+            }
+            .drive { [weak self] err in
+                self?.present(ErrorMessageAlert(with: err), animated: true)
+            }
+            .disposed(by: bag)
+    }
+    
+    // MARK: - View binds
+    private func bindSearchBarQuery() {
+        searchQuery = searchBar.rx.searchButtonClicked
+            .map { [weak self] in self?.searchBar.text ?? "" }
+            .filter { !$0.isEmpty }
+            .asDriver(onErrorJustReturn: "")
+    }
+    
+    private func searchButtonClicked() {
+        searchQuery?
+            .drive { [weak self] in
+                self?.viewModel.didSearch(query: $0)
+            }
+            .disposed(by: bag)
+    }
+    
+    private func showLoadingView() {
+        searchQuery?
+            .map { _ in false }
+            .drive(loadingView.activityIndicator.rx.isHidden,
+                   loadingView.rx.isHidden)
+            .disposed(by: bag)
+    }
+    
+    private func hideLoadingView() {
+        viewModel.facts
+            .filter { !$0.isEmpty }
+            .map { _ in true }
+            .subscribe(loadingView.rx.isHidden)
+            .disposed(by: bag)
+    }
+    
+    private func bindKeyboardDismiss() {
+        searchQuery?
+            .map { _ in true }
+            .drive(searchBar.rx.resignFirstResponder)
+            .disposed(by: bag)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

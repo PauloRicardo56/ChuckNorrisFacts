@@ -15,7 +15,7 @@ class TextSearchViewModelTests: XCTestCase {
     func test_searchedFacts() {
         let sut = TextSearchViewModel()
         
-        sut.searchFact("cook")
+        sut.didSearch(query: "cook")
         let searchedResult = try! sut.facts
             .toBlocking()
             .first()!

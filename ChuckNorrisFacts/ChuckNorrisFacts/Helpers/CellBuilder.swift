@@ -13,7 +13,7 @@ import RxCocoa
 class CellBuilder {
     private let cell: FactCell
     
-    init(build cell: FactCell) {
+    init(_ cell: FactCell) {
         self.cell = cell
     }
     
