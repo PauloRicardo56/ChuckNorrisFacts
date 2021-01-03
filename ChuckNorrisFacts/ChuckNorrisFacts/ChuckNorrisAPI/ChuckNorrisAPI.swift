@@ -15,7 +15,6 @@ class ChuckNorrisAPI {
     
     private init() {}
     
-    // MARK: Private methods
     /// Método de construção da request utilizando RxCococa
     func buildRequest(
         method: String = "GET",

@@ -8,14 +8,20 @@
 import Foundation
 import UIKit
 
+protocol Coordinator {
+    var navigationController: UINavigationController { get }
+    
+    func start()
+}
+
 class AppCoordinator: Coordinator {
     var window: UIWindow?
     var navigationController: UINavigationController
-    var initialViewModel: TextSearchViewModel
+    var initialViewModel: FactSearchViewModel
     
     init(window: UIWindow?) {
         self.window = window
-        initialViewModel = .init()
+        initialViewModel = DefaultFactSearchViewModel()
         
         let vc = InitialViewController(viewModel: initialViewModel)
         navigationController = .init(rootViewController: vc)

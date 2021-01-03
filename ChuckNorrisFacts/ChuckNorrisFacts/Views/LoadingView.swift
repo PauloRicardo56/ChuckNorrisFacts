@@ -63,9 +63,6 @@ class LoadingView: UIView {
     init() {
         super.init(frame: .zero)
         setupView()
-        
-        backgroundColor = Colors.background.uiColor
-        alpha = 0.9
     }
     
     override func didMoveToSuperview() {

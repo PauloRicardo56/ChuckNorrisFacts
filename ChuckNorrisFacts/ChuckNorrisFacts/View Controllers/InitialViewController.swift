@@ -12,15 +12,34 @@ import RxCocoa
 class InitialViewController: UIViewController {
     // MARK: Properties
     let bag = DisposeBag()
-    let viewModel: TextSearchViewModel
+    let viewModel: FactSearchViewModel
     var coordinator: AppCoordinator?
-    
+    var searchQuery: Driver<String>?
+
     // MARK: Views
-    let tableView = FactsListTableView()
-    let loadingView = LoadingView()
-    var searchBar = FactSearchBar()
+    let tableView: FactsListTableView = {
+        let table = FactsListTableView()
+        table.backgroundColor = .clear
+        table.separatorStyle = .none
+        table.allowsSelection = false
+        table.translatesAutoresizingMaskIntoConstraints = false
+        return table
+    }()
     
-    init(viewModel: TextSearchViewModel) {
+    let loadingView: LoadingView = {
+        let view = LoadingView()
+        view.backgroundColor = Colors.background.uiColor
+        view.alpha = 0.9
+        return view
+    }()
+    
+    var searchBar: FactSearchBar = {
+        let search = FactSearchBar()
+        search.tintColor = Colors.font.uiColor
+        return search
+    }()
+    
+    init(viewModel: FactSearchViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -35,28 +54,34 @@ class InitialViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = Colors.foreground.uiColor
         navigationController?.navigationBar.isTranslucent = false
         
-        bindViewModel()
-        subscribeSearchActivity()
-        changeViewWhenAPIResponse()
-        setupTableViewDataSrouce()
+        bind(to: viewModel)
+        bindSearchBarQuery()
+        searchButtonClicked()
+        showLoadingView()
+        hideLoadingView()
+        bindKeyboardDismiss()
     }
     
-    // MARK: - View model binds
-    private func bindViewModel() {
-        bindSearchFact()
-        bindErrors()
-    }
-    
-    private func bindSearchFact() {
-        searchInput()
-            .subscribe { [weak self] search in self?.viewModel.searchFact(search) }
+    // MARK: - View model bind
+    private func bind(to viewModel: FactSearchViewModel) {
+        viewModel.facts
+            .bind(to: self.tableView.rx.items) { (tableView: UITableView, index: Int, element: Fact) in
+                let indexPath = IndexPath(row: index, section: 0)
+                let cell = tableView.dequeueReusableCell(withIdentifier: "factCell", for: indexPath) as! FactCell
+                return CellBuilder(cell)
+                    .withValueText(text: element.value)
+                    .withShareButton(image: "square.and.arrow.up")
+                    .withShareButtonAction { [weak self] in self?.coordinator?.share(url: element.url) }
+                    .withCategoryText(text: element.categories.first)
+                    .build()
+            }
             .disposed(by: bag)
-    }
-    
-    private func bindErrors() {
+        
         viewModel.error
             .asDriver(onErrorJustReturn: .singleMessage(.serverError))
-            .do { [weak self] _ in self?.loadingView.activityIndicator.isHidden = true }
+            .do { [weak self] _ in
+                self?.loadingView.activityIndicator.isHidden = true
+            }
             .drive { [weak self] err in
                 self?.present(ErrorMessageAlert(with: err), animated: true)
             }
@@ -64,58 +89,45 @@ class InitialViewController: UIViewController {
     }
     
     // MARK: - View binds
-    private func subscribeSearchActivity() {
-        searchInput()
-            .map { _ in false }
-            .subscribe(loadingView.activityIndicator.rx.isHidden)
-            .disposed(by: bag)
-        
-        searchInput()
-            .map { _ in false }
-            .subscribe(loadingView.rx.isHidden)
-            .disposed(by: bag)
-        
-        searchInput()
-            .map { _ in true }
-            .subscribe(searchBar.rx.resignFirstResponder)
-            .disposed(by: bag)
-    }
-    
-    private func searchInput() -> Observable<String> {
-        searchBar.rx.searchButtonClicked
+    private func bindSearchBarQuery() {
+        searchQuery = searchBar.rx.searchButtonClicked
             .map { [weak self] in self?.searchBar.text ?? "" }
             .filter { !$0.isEmpty }
+            .asDriver(onErrorJustReturn: "")
     }
     
-    private func changeViewWhenAPIResponse() {
+    private func searchButtonClicked() {
+        searchQuery?
+            .drive { [weak self] in
+                self?.viewModel.didSearch(query: $0)
+            }
+            .disposed(by: bag)
+    }
+    
+    private func showLoadingView() {
+        searchQuery?
+            .map { _ in false }
+            .drive(loadingView.activityIndicator.rx.isHidden,
+                   loadingView.rx.isHidden)
+            .disposed(by: bag)
+    }
+    
+    private func hideLoadingView() {
         viewModel.facts
+            .filter { !$0.isEmpty }
             .map { _ in true }
             .subscribe(loadingView.rx.isHidden)
+            .disposed(by: bag)
+    }
+    
+    private func bindKeyboardDismiss() {
+        searchQuery?
+            .map { _ in true }
+            .drive(searchBar.rx.resignFirstResponder)
             .disposed(by: bag)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-// MARK: - TableView DataSource
-extension InitialViewController {
-    
-    private func setupTableViewDataSrouce() {
-        self.viewModel.facts
-            .bind(to: self.tableView.rx.items) { (tableView: UITableView, index: Int, element: Fact) in
-                let indexPath = IndexPath(row: index, section: 0)
-                let cell = tableView.dequeueReusableCell(withIdentifier: "factCell", for: indexPath) as! FactCell
-                cell.valueText.text = element.value
-                cell.share.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
-                cell.share.rx.tap
-                    .asSignal()
-                    .emit(onNext: { [weak self] in self?.coordinator?.share(url: element.url) })
-                    .disposed(by: cell.bag)
-                cell.category.text = element.categories.first ?? "uncategorized"
-                return cell
-            }
-            .disposed(by: bag)
     }
 }
