@@ -10,7 +10,7 @@ import Foundation
 
 extension Fact {
     
-    static func stub(categories: String = ["food"],
+    static func stub(categories: [String] = ["food"],
                      createdAt: String = "2020-01-05 13:42:18.823766",
                      iconURL: String = "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
                      id: String = "e9LPe1QcTIWO8VqQJZmhhg",

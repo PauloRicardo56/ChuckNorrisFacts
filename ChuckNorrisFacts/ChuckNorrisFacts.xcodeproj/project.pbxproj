@@ -28,6 +28,8 @@
 		234CA56F25A104D900637F3A /* CellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CA56E25A104D900637F3A /* CellBuilder.swift */; };
 		23514B342596833E00620D74 /* ErrorMessageAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23514B332596833E00620D74 /* ErrorMessageAlert.swift */; };
 		237404EC25A222C300588117 /* ChuckNorrisAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237404EB25A222C300588117 /* ChuckNorrisAPI.swift */; };
+		237404F125A2242A00588117 /* ChuckNorrisAPIMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237404F025A2242A00588117 /* ChuckNorrisAPIMock.swift */; };
+		237404F625A2252D00588117 /* Search+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237404F525A2252D00588117 /* Search+Stub.swift */; };
 		2399097225A2201100B15819 /* Fact+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2399097125A2201100B15819 /* Fact+Stub.swift */; };
 		23C69337259BFA4F00DDE5CC /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C69336259BFA4F00DDE5CC /* SnapshotHelper.swift */; };
 		23EA81F72591552A00DF4B09 /* FactsListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA81F62591552A00DF4B09 /* FactsListTableView.swift */; };
@@ -90,6 +92,8 @@
 		23514B232594FAAE00620D74 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		23514B332596833E00620D74 /* ErrorMessageAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageAlert.swift; sourceTree = "<group>"; };
 		237404EB25A222C300588117 /* ChuckNorrisAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuckNorrisAPI.swift; sourceTree = "<group>"; };
+		237404F025A2242A00588117 /* ChuckNorrisAPIMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuckNorrisAPIMock.swift; sourceTree = "<group>"; };
+		237404F525A2252D00588117 /* Search+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Search+Stub.swift"; sourceTree = "<group>"; };
 		2399097125A2201100B15819 /* Fact+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fact+Stub.swift"; sourceTree = "<group>"; };
 		23C69336259BFA4F00DDE5CC /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		23EA81F62591552A00DF4B09 /* FactsListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsListTableView.swift; sourceTree = "<group>"; };
@@ -309,6 +313,8 @@
 			children = (
 				23EA82822594235000DF4B09 /* ReactiveUIMock.swift */,
 				2399097125A2201100B15819 /* Fact+Stub.swift */,
+				237404F025A2242A00588117 /* ChuckNorrisAPIMock.swift */,
+				237404F525A2252D00588117 /* Search+Stub.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -611,6 +617,8 @@
 			files = (
 				23EA82782594163900DF4B09 /* ReactiveUITests.swift in Sources */,
 				23EA82252592B2DD00DF4B09 /* ChuckNorrisAPITests.swift in Sources */,
+				237404F625A2252D00588117 /* Search+Stub.swift in Sources */,
+				237404F125A2242A00588117 /* ChuckNorrisAPIMock.swift in Sources */,
 				2399097225A2201100B15819 /* Fact+Stub.swift in Sources */,
 				23EA82832594235000DF4B09 /* ReactiveUIMock.swift in Sources */,
 				23EA82352592B85800DF4B09 /* TextSearchViewModelTests.swift in Sources */,
