@@ -11,11 +11,11 @@ import RxBlocking
 @testable import ChuckNorrisFacts
 
 class ChuckNorrisAPITests: XCTestCase {
-    var sut: ChuckNorrisAPI!
+    var sut: DefaultChuckNorrisAPI!
     
     override func setUp() {
         super.setUp()
-        sut = ChuckNorrisAPI.shared
+        sut = DefaultChuckNorrisAPI.shared
     }
     
     override func tearDown() {
@@ -53,13 +53,5 @@ class ChuckNorrisAPITests: XCTestCase {
             }
         
         XCTAssertNotNil(try XCTUnwrap(textSearchResult))
-    }
-    
-    func test_randomFactsAPICall() {
-//        let randomCount = try? sut.randomFact()
-//            .toBlocking()
-//            .first()
-//
-//        XCTAssertNotNil(randomCount?.value)
     }
 }

@@ -21,7 +21,8 @@ class AppCoordinator: Coordinator {
     
     init(window: UIWindow?) {
         self.window = window
-        initialViewModel = DefaultFactSearchViewModel()
+        let defaultChuckNorrisAPI = DefaultChuckNorrisAPI()
+        initialViewModel = DefaultFactSearchViewModel(chuckNorrisAPI: defaultChuckNorrisAPI)
         
         let vc = InitialViewController(viewModel: initialViewModel)
         navigationController = .init(rootViewController: vc)
