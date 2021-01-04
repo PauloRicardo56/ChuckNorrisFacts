@@ -8,7 +8,7 @@ script:
   - fastlane tests screenshots:true
 
 
-#branches:
-#  only:
-#  - master
+branches:
+  only:
+  - main
 #  - develop
