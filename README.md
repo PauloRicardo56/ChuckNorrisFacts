@@ -9,12 +9,10 @@
 - O método de requisição do URLSession foi mudado do .data(request:) para .response(request:) a fim de processar os erros REST retornados.
 - Lane customizada criada para que, em uma única linha, todos os testes da aplicação sejam rodados, incluindo a opção de tirar, ou não, as screenshots durante os testes.
 - A princípio seria utilizado o Nimble-Snapshots para os testes de view, mas como esse já foi utilizado em projetos anteriores, decidi usar o FBSnapshotTestCase para o aprendizado.
-- 
 
 ### UI
 - Palheta de cores foi escolhida em cima da logo da API.
 - Fontes usadas foram baseadas na utilizadas na documentação da API
--  
 
 ### Não inserir o Pods/ no .gitignore
 - A máquina que executará o projeto não necessitará de ter o CocoaPods instalado.
