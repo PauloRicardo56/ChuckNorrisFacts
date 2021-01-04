@@ -110,7 +110,9 @@
       </section>
       <section class="right">
         <section id="counters">
-          <h2 id="test-count"><span class="number">6</span> tests</h2>
+          <h2 id="test-count"><span class="number">7</span> tests</h2>
+          
+            <h2 id="fail-count"><span class="number">2</span> failures</h2>
           
         </section>
         <section id="segment-bar">
@@ -129,21 +131,10 @@
             <table>
             
               
-              <tr class="test passing "  onclick="toggleDetails('test_randomFactsAPICall');">
+              <tr class="test passing "  onclick="toggleDetails('test_restError');">
                 <td>
                   
-                    <h3 class="time">0.003s</h3>
-                  
-                </td>
-                <td><h3 class="title">test_randomFactsAPICall</h3></td>
-              </tr>
-              
-            
-              
-              <tr class="test passing odd"  onclick="toggleDetails('test_restError');">
-                <td>
-                  
-                    <h3 class="time">1.042s</h3>
+                    <h3 class="time">1.074s</h3>
                   
                 </td>
                 <td><h3 class="title">test_restError</h3></td>
@@ -151,14 +142,78 @@
               
             
               
-              <tr class="test passing "  onclick="toggleDetails('test_textSearchAPICall');">
+              <tr class="test passing odd"  onclick="toggleDetails('test_textSearchAPICall');">
                 <td>
                   
-                    <h3 class="time">0.692s</h3>
+                    <h3 class="time">0.712s</h3>
                   
                 </td>
                 <td><h3 class="title">test_textSearchAPICall</h3></td>
               </tr>
+              
+            
+            </table>
+          </section>
+        </section>
+      
+        
+        <section class="test-suite failing" id="ChuckNorrisFactsTests.FactsListViewTests">
+          <section class="heading" onclick="toggleTests(this);">
+            <h3 class="title">ChuckNorrisFactsTests.FactsListViewTests</h3>
+          </section>
+          <section class="tests">
+            <table>
+            
+              
+              <tr class="test failing "  onclick="toggleDetails('test_whenError_showAlert');">
+                <td>
+                  
+                </td>
+                <td><h3 class="title">test_whenError_showAlert</h3></td>
+              </tr>
+              
+                <tr class="details failing test_whenError_showAlert">
+                  <td></td>
+                  <td>
+                    
+                      <section class="test-detail reason">failed - Snapshot comparison failed: Optional(Error Domain=FBSnapshotTestControllerErrorDomain Code=1 "Unable to load reference image." UserInfo={NSLocalizedFailureReason=Reference image not found. You need to run the test in record mode, NSLocalizedDescription=Unable to load reference image., FBReferenceImageFilePathKey=/Users/pauloricardo/Library/Developer/Xcode/DerivedData/ChuckNorrisFacts-eqzammrfzrddiscimromwryhppwl/Build/Products/Debug-iphonesimulator/ChuckNorrisFacts.app/PlugIns/ChuckNorrisFactsTests.xctest/ReferenceImages_64/ChuckNorrisFactsTests.FactsListViewTests/test_whenError_showAlertAndReturnError_@3x.png})</section>
+                    
+                    
+                      <section class="test-detail snippet">            <span class="k">let</span> <span class="nv">alert</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">XCTUnwrap</span><span class="p">(</span><span class="n">vc</span><span class="o">.</span><span class="n">presentedViewController</span><span class="p">)</span>
+            <span class="kt">FBSnapshotVerifyViewController</span><span class="p">(</span><span class="n">alert</span><span class="p">)</span>
+        <span class="p">}</span>
+</section>
+                      <section class="test-detail">/Users/pauloricardo/Git/ChuckNorrisFacts/ChuckNorrisFacts/ChuckNorrisFactsTests/FactsListViewSpec.swift:50</section>
+                    
+                    
+                  </td>
+                </tr>
+              
+            
+              
+              <tr class="test failing odd"  onclick="toggleDetails('test_whenHasFacts_showInTable');">
+                <td>
+                  
+                </td>
+                <td><h3 class="title">test_whenHasFacts_showInTable</h3></td>
+              </tr>
+              
+                <tr class="details failing test_whenHasFacts_showInTable">
+                  <td></td>
+                  <td>
+                    
+                      <section class="test-detail reason">failed - Snapshot comparison failed: Optional(Error Domain=FBSnapshotTestControllerErrorDomain Code=1 "Unable to load reference image." UserInfo={NSLocalizedFailureReason=Reference image not found. You need to run the test in record mode, NSLocalizedDescription=Unable to load reference image., FBReferenceImageFilePathKey=/Users/pauloricardo/Library/Developer/Xcode/DerivedData/ChuckNorrisFacts-eqzammrfzrddiscimromwryhppwl/Build/Products/Debug-iphonesimulator/ChuckNorrisFacts.app/PlugIns/ChuckNorrisFactsTests.xctest/ReferenceImages_64/ChuckNorrisFactsTests.FactsListViewTests/test_whenHasFacts_showInTable@3x.png})</section>
+                    
+                    
+                      <section class="test-detail snippet">        
+        <span class="kt">FBSnapshotVerifyViewController</span><span class="p">(</span><span class="n">vc</span><span class="p">)</span>
+    <span class="p">}</span>
+</section>
+                      <section class="test-detail">/Users/pauloricardo/Git/ChuckNorrisFacts/ChuckNorrisFacts/ChuckNorrisFactsTests/FactsListViewSpec.swift:34</section>
+                    
+                    
+                  </td>
+                </tr>
               
             
             </table>
@@ -177,7 +232,7 @@
               <tr class="test passing "  onclick="toggleDetails('test_biggerFontAccordingToTextSize');">
                 <td>
                   
-                    <h3 class="time">0.007s</h3>
+                    <h3 class="time">0.004s</h3>
                   
                 </td>
                 <td><h3 class="title">test_biggerFontAccordingToTextSize</h3></td>
@@ -188,7 +243,7 @@
               <tr class="test passing odd"  onclick="toggleDetails('test_smallerFontAccordingToTextSize');">
                 <td>
                   
-                    <h3 class="time">0.004s</h3>
+                    <h3 class="time">0.003s</h3>
                   
                 </td>
                 <td><h3 class="title">test_smallerFontAccordingToTextSize</h3></td>
@@ -211,7 +266,7 @@
               <tr class="test passing "  onclick="toggleDetails('test_searchedFacts');">
                 <td>
                   
-                    <h3 class="time">0.299s</h3>
+                    <h3 class="time">0.002s</h3>
                   
                 </td>
                 <td><h3 class="title">test_searchedFacts</h3></td>

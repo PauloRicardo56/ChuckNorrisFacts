@@ -36,6 +36,7 @@ class InitialViewController: UIViewController {
     var searchBar: FactSearchBar = {
         let search = FactSearchBar()
         search.tintColor = Colors.font.uiColor
+        search.searchTextField.accessibilityIdentifier = AccessibilityIdentifier.searchBar
         return search
     }()
     
@@ -86,7 +87,6 @@ class InitialViewController: UIViewController {
             }
             .drive { [weak self] err in
                 self?.coordinator?.error(vc: self, err: err)
-//                self?.present(ErrorMessageAlert(with: err), animated: true)
             }
             .disposed(by: bag)
     }

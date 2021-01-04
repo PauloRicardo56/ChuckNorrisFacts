@@ -31,6 +31,8 @@
 		237404EC25A222C300588117 /* ChuckNorrisAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237404EB25A222C300588117 /* ChuckNorrisAPI.swift */; };
 		237404F125A2242A00588117 /* ChuckNorrisAPIMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237404F025A2242A00588117 /* ChuckNorrisAPIMock.swift */; };
 		237404F625A2252D00588117 /* Search+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237404F525A2252D00588117 /* Search+Stub.swift */; };
+		237753E425A2942D00F7E1BA /* AccessibilityIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237753E325A2942D00F7E1BA /* AccessibilityIdentifier.swift */; };
+		237753F725A2990000F7E1BA /* AccessibilityIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237753E325A2942D00F7E1BA /* AccessibilityIdentifier.swift */; };
 		2399097225A2201100B15819 /* Fact+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2399097125A2201100B15819 /* Fact+Stub.swift */; };
 		23C69337259BFA4F00DDE5CC /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C69336259BFA4F00DDE5CC /* SnapshotHelper.swift */; };
 		23EA81F72591552A00DF4B09 /* FactsListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA81F62591552A00DF4B09 /* FactsListTableView.swift */; };
@@ -97,6 +99,7 @@
 		237404EB25A222C300588117 /* ChuckNorrisAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuckNorrisAPI.swift; sourceTree = "<group>"; };
 		237404F025A2242A00588117 /* ChuckNorrisAPIMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuckNorrisAPIMock.swift; sourceTree = "<group>"; };
 		237404F525A2252D00588117 /* Search+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Search+Stub.swift"; sourceTree = "<group>"; };
+		237753E325A2942D00F7E1BA /* AccessibilityIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifier.swift; sourceTree = "<group>"; };
 		2399097125A2201100B15819 /* Fact+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fact+Stub.swift"; sourceTree = "<group>"; };
 		23C69336259BFA4F00DDE5CC /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		23EA81F62591552A00DF4B09 /* FactsListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsListTableView.swift; sourceTree = "<group>"; };
@@ -226,7 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				234CA52C259FFE8800637F3A /* Fonts */,
-				23EA8200259157E100DF4B09 /* Helpers */,
+				23EA8200259157E100DF4B09 /* Utils */,
 				23238DB625911D7800DB3FC0 /* ChuckNorrisAPI */,
 				2311C84C2591233A00128535 /* Models */,
 				2311C85725914EFC00128535 /* Views */,
@@ -249,9 +252,9 @@
 				23EA82812594231E00DF4B09 /* Mocks */,
 				23EA82242592B2DD00DF4B09 /* ChuckNorrisAPITests.swift */,
 				23EA82342592B85800DF4B09 /* TextSearchViewModelTests.swift */,
-				23238D9625910EAE00DB3FC0 /* Info.plist */,
 				23EA82772594163900DF4B09 /* ReactiveUITests.swift */,
 				2356599A25A24BC1003FC26B /* FactsListViewSpec.swift */,
+				23238D9625910EAE00DB3FC0 /* Info.plist */,
 			);
 			path = ChuckNorrisFactsTests;
 			sourceTree = "<group>";
@@ -259,8 +262,8 @@
 		23238D9E25910EAE00DB3FC0 /* ChuckNorrisFactsUITests */ = {
 			isa = PBXGroup;
 			children = (
-				23C69336259BFA4F00DDE5CC /* SnapshotHelper.swift */,
 				23238D9F25910EAE00DB3FC0 /* ChuckNorrisFactsUITests.swift */,
+				23C69336259BFA4F00DDE5CC /* SnapshotHelper.swift */,
 				23238DA125910EAE00DB3FC0 /* Info.plist */,
 			);
 			path = ChuckNorrisFactsUITests;
@@ -311,7 +314,7 @@
 			path = TableView;
 			sourceTree = "<group>";
 		};
-		23EA8200259157E100DF4B09 /* Helpers */ = {
+		23EA8200259157E100DF4B09 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				23EA8201259157E900DF4B09 /* ViewCoding.swift */,
@@ -319,8 +322,9 @@
 				234CA51A259E546000637F3A /* Colors.swift */,
 				234CA524259FE88E00637F3A /* Fonts.swift */,
 				234CA56E25A104D900637F3A /* CellBuilder.swift */,
+				237753E325A2942D00F7E1BA /* AccessibilityIdentifier.swift */,
 			);
-			path = Helpers;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		23EA82812594231E00DF4B09 /* Mocks */ = {
@@ -618,6 +622,7 @@
 				233C7367259B917400D00AA4 /* APIErrorMessage.swift in Sources */,
 				23238D7E25910EAB00DB3FC0 /* AppDelegate.swift in Sources */,
 				23EA82482592F11000DF4B09 /* AppCoordinator.swift in Sources */,
+				237753E425A2942D00F7E1BA /* AccessibilityIdentifier.swift in Sources */,
 				23238D8025910EAB00DB3FC0 /* SceneDelegate.swift in Sources */,
 				23EA81FC2591571E00DF4B09 /* FactCell.swift in Sources */,
 				23EA8215259258A200DF4B09 /* FactsSearchBar.swift in Sources */,
@@ -646,6 +651,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23238DA025910EAE00DB3FC0 /* ChuckNorrisFactsUITests.swift in Sources */,
+				237753F725A2990000F7E1BA /* AccessibilityIdentifier.swift in Sources */,
 				23C69337259BFA4F00DDE5CC /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

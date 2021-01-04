@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import ChuckNorrisFacts
 
 class ChuckNorrisFactsUITests: XCTestCase {
     var app: XCUIApplication!
@@ -23,10 +24,10 @@ class ChuckNorrisFactsUITests: XCTestCase {
         try super.tearDownWithError()
     }
     
-    func test_example() throws {
+    func test_e2e() throws {
         
         snapshot("EmptySearch")
-        let searchBar = app.navigationBars["ChuckNorrisFacts.InitialView"].children(matching: .searchField).element
+        let searchBar = app.searchFields[AccessibilityIdentifier.searchBar]
         
         searchBar.tap()
         searchBar.typeText("Kik")
