@@ -11,20 +11,20 @@ import RxBlocking
 @testable import ChuckNorrisFacts
 
 class ChuckNorrisAPITests: XCTestCase {
-    var sut: ChuckNorrisAPI!
-    
+    var sut: DefaultChuckNorrisAPI!
+
     override func setUp() {
         super.setUp()
-        sut = ChuckNorrisAPI.shared
+        sut = DefaultChuckNorrisAPI()
     }
-    
+
     override func tearDown() {
         sut = nil
         super.tearDown()
     }
-    
+
     func test_textSearchAPICall() {
-        let textSearchResult = try? sut.buildRequest(pathComponent: "search", params: [("query", "cake")])
+        let textSearchResult = try? sut.buildRequest(method: .GET, pathComponent: "search", params: [("query", "cake")])
             .toBlocking()
             .first()
             .map { result -> Data? in
@@ -35,12 +35,12 @@ class ChuckNorrisAPITests: XCTestCase {
                     return nil
                 }
             }
-            
+
         XCTAssertNotNil(try XCTUnwrap(textSearchResult))
     }
     
     func test_restError() {
-        let textSearchResult = try? sut.buildRequest(pathComponent: "search", params: [("query", "c")])
+        let textSearchResult = try? sut.buildRequest(method: .GET, pathComponent: "search", params: [("query", "c")])
             .toBlocking()
             .first()
             .map { result -> APIErrorMessage? in
@@ -51,15 +51,7 @@ class ChuckNorrisAPITests: XCTestCase {
                     return err
                 }
             }
-        
+
         XCTAssertNotNil(try XCTUnwrap(textSearchResult))
-    }
-    
-    func test_randomFactsAPICall() {
-//        let randomCount = try? sut.randomFact()
-//            .toBlocking()
-//            .first()
-//
-//        XCTAssertNotNil(randomCount?.value)
     }
 }

@@ -7,19 +7,26 @@
 
 import Foundation
 import XCTest
-import RxBlocking
+import RxSwift
 @testable import ChuckNorrisFacts
 
 class TextSearchViewModelTests: XCTestCase {
     
     func test_searchedFacts() {
-        let sut = TextSearchViewModel()
+        let bag = DisposeBag()
+        let apiMock = ChuckNorrisAPIMock()
+        let sut = DefaultFactSearchViewModel(chuckNorrisAPI: apiMock)
         
-        sut.didSearch(query: "cook")
-        let searchedResult = try! sut.facts
-            .toBlocking()
-            .first()!
-
-        XCTAssertTrue(searchedResult.count > 0)
+        let expectedFact = Fact.stub()
+        let expectedSearch = Search.stub(result: [expectedFact])
+        
+        apiMock.search = try! JSONEncoder().encode(expectedSearch)
+        
+        sut.didSearch(query: "")
+        sut.facts
+            .subscribe { search in
+                XCTAssertEqual(search.first?.value, expectedFact.value)
+            }
+            .disposed(by: bag)
     }
 }

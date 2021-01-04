@@ -1,5 +1,5 @@
 //
-//  TextSearchViewModel.swift
+//  FactSearchViewModel.swift
 //  ChuckNorrisFacts
 //
 //  Created by Paulo Ricardo on 22/12/20.
@@ -23,17 +23,22 @@ protocol FactSearchViewModel: TextSearchViewModelInput, FactSearchViewModelOutpu
 
 final class DefaultFactSearchViewModel: FactSearchViewModel {
     
-    let bag = DisposeBag()
+    private let bag = DisposeBag()
+    private let chuckNorrisAPI: ChuckNorrisAPI
     
     // MARK: Output
     let error = PublishSubject<APIErrorMessage>()
     let facts = PublishSubject<[Fact]>()
     
+    init(chuckNorrisAPI: ChuckNorrisAPI) {
+        self.chuckNorrisAPI = chuckNorrisAPI
+    }
+    
     // MARK: - Input
     func didSearch(query: String) {
         let params = [("query", query)]
         
-        ChuckNorrisAPI.shared.buildRequest(pathComponent: "search", params: params)
+        chuckNorrisAPI.buildRequest(method: .GET, pathComponent: "search", params: params)
             .catchAndReturn(.failure(.singleMessage(.noConnection)))
             .subscribe(onNext: { [weak self] result in
                 do {

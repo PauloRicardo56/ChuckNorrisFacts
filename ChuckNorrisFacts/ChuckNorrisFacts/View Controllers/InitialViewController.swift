@@ -36,6 +36,7 @@ class InitialViewController: UIViewController {
     var searchBar: FactSearchBar = {
         let search = FactSearchBar()
         search.tintColor = Colors.font.uiColor
+        search.searchTextField.accessibilityIdentifier = AccessibilityIdentifier.searchBar
         return search
     }()
     
@@ -53,7 +54,9 @@ class InitialViewController: UIViewController {
         navigationItem.leftBarButtonItem = .init(customView: searchBar)
         navigationController?.navigationBar.barTintColor = Colors.foreground.uiColor
         navigationController?.navigationBar.isTranslucent = false
-        
+    }
+    
+    func setSubscribers() {
         bind(to: viewModel)
         bindSearchBarQuery()
         searchButtonClicked()
@@ -83,7 +86,7 @@ class InitialViewController: UIViewController {
                 self?.loadingView.activityIndicator.isHidden = true
             }
             .drive { [weak self] err in
-                self?.present(ErrorMessageAlert(with: err), animated: true)
+                self?.coordinator?.error(vc: self, err: err)
             }
             .disposed(by: bag)
     }
@@ -114,7 +117,9 @@ class InitialViewController: UIViewController {
     
     private func hideLoadingView() {
         viewModel.facts
-            .filter { !$0.isEmpty }
+            .filter { fact in
+                !fact.isEmpty
+            }
             .map { _ in true }
             .subscribe(loadingView.rx.isHidden)
             .disposed(by: bag)
