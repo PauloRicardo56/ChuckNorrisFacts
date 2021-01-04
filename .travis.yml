@@ -1,0 +1,14 @@
+os: osx
+osx_image: xcode12.2
+language: swift
+before_install: cd ChuckNorrisFacts
+install:
+  - bundle install
+script:
+  - fastlane tests screenshots:true
+
+
+#branches:
+#  only:
+#  - master
+#  - develop
