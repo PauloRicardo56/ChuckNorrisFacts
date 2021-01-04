@@ -12,15 +12,21 @@
 
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
+setup_travis
 
 default_platform(:ios)
 
 platform :ios do
 
   desc "Run all application tests (ui/unit)"
-  lane :tests do
-     ui_tests
-     unit_tests
+  lane :tests do |options|
+     if options[:screenshots]
+       screenshots
+       unit_tests
+     else
+       ui_tests
+       unit_tests
+     end
   end
 
   desc "App Store deployment"

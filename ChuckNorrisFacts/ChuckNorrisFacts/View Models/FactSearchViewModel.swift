@@ -52,6 +52,7 @@ final class DefaultFactSearchViewModel: FactSearchViewModel {
                             self?.facts.onNext(search.result)
                         }
                     case .failure(let err):
+                        self?.facts.onNext([])
                         self?.error.onNext(err)
                     }
                 } catch {
