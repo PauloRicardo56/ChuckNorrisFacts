@@ -49,6 +49,7 @@ platform :ios do
   desc "Run application unit tests"
   lane :unit_tests do
     run_tests(scheme: "ChuckNorrisFactsTests",
-              devices: ["iPhone 12 Pro Max"])
+              devices: ["iPhone 12 Pro Max"],
+              skip_testing: ["ChuckNorrisFactsTests/FactsListViewTests"])
   end
 end
