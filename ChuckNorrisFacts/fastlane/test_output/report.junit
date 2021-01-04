@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <testsuites name='ChuckNorrisFactsTests.xctest' tests='7' failures='2'>
   <testsuite name='ChuckNorrisFactsTests.ChuckNorrisAPITests' tests='2' failures='0'>
-    <testcase classname='ChuckNorrisFactsTests.ChuckNorrisAPITests' name='test_restError' time='1.164'/>
-    <testcase classname='ChuckNorrisFactsTests.ChuckNorrisAPITests' name='test_textSearchAPICall' time='0.713'/>
+    <testcase classname='ChuckNorrisFactsTests.ChuckNorrisAPITests' name='test_restError' time='1.583'/>
+    <testcase classname='ChuckNorrisFactsTests.ChuckNorrisAPITests' name='test_textSearchAPICall' time='1.045'/>
   </testsuite>
   <testsuite name='ChuckNorrisFactsTests.FactsListViewTests' tests='2' failures='2'>
     <testcase classname='ChuckNorrisFactsTests.FactsListViewTests' name='test_whenError_showAlert'>
@@ -13,10 +13,10 @@
     </testcase>
   </testsuite>
   <testsuite name='ChuckNorrisFactsTests.ReactiveUITests' tests='2' failures='0'>
-    <testcase classname='ChuckNorrisFactsTests.ReactiveUITests' name='test_biggerFontAccordingToTextSize' time='0.004'/>
+    <testcase classname='ChuckNorrisFactsTests.ReactiveUITests' name='test_biggerFontAccordingToTextSize' time='0.011'/>
     <testcase classname='ChuckNorrisFactsTests.ReactiveUITests' name='test_smallerFontAccordingToTextSize' time='0.004'/>
   </testsuite>
   <testsuite name='ChuckNorrisFactsTests.TextSearchViewModelTests' tests='1' failures='0'>
-    <testcase classname='ChuckNorrisFactsTests.TextSearchViewModelTests' name='test_searchedFacts' time='0.002'/>
+    <testcase classname='ChuckNorrisFactsTests.TextSearchViewModelTests' name='test_searchedFacts' time='0.006'/>
   </testsuite>
 </testsuites>
