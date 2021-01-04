@@ -16,16 +16,26 @@ or alternatively using `brew install fastlane`
 
 # Available Actions
 ## iOS
+### ios tests
+```
+fastlane ios tests
+```
+Run all application tests (ui/unit)
 ### ios screenshots
 ```
 fastlane ios screenshots
 ```
 Generate new localized screenshots
-### ios tests
+### ios uitests
 ```
-fastlane ios tests
+fastlane ios uitests
 ```
-Run application tests
+Run application ui tests
+### ios unittests
+```
+fastlane ios unittests
+```
+Run application unit tests
 ### ios release
 ```
 fastlane ios release

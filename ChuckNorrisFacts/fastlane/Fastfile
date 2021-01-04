@@ -17,15 +17,10 @@ default_platform(:ios)
 
 platform :ios do
 
-  desc "Generate new localized screenshots"
-  lane :screenshots do
-    capture_screenshots(workspace: "ChuckNorrisFacts.xcworkspace", scheme: "ChuckNorrisFacts")
-  end
-
-  desc "Run application tests"
+  desc "Run all application tests (ui/unit)"
   lane :tests do
-    run_tests(scheme: "ChuckNorrisFactsTests",
-              devices: ["iPhone 12 Pro Max"])
+     ui_tests
+     unit_tests
   end
 
   desc "App Store deployment"
@@ -33,5 +28,23 @@ platform :ios do
     build_app(scheme: "ChuckNorrisFacts",
               workspace: "ChuckNorrisFacts.xcworkspace",
      	      include_bitcode: true)
+  end
+
+  desc "Generate new localized screenshots"
+  lane :screenshots do
+    capture_screenshots(workspace: "ChuckNorrisFacts.xcworkspace",
+                        scheme: "ChuckNorrisFacts")
+  end
+
+  desc "Run application ui tests"
+  lane :ui_tests do
+    run_tests(scheme: "ChuckNorrisFactsUITests",
+              devices: ["iPhone 12 Pro Max"])
+  end
+
+  desc "Run application unit tests"
+  lane :unit_tests do
+    run_tests(scheme: "ChuckNorrisFactsTests",
+              devices: ["iPhone 12 Pro Max"])
   end
 end
