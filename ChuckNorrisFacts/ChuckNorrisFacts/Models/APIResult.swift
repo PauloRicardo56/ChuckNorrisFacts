@@ -7,11 +7,11 @@
 
 import Foundation
 
-enum APIResult<Data, Error> {
-    case success(Data)
+enum APIResult<Value, Error> {
+    case success(Value)
     case failure(Error)
     
-    init(value: Data) {
+    init(value: Value) {
         self = .success(value)
     }
     

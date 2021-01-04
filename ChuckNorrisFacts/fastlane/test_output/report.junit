@@ -1,20 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <testsuites name='ChuckNorrisFactsTests.xctest' tests='7' failures='2'>
   <testsuite name='ChuckNorrisFactsTests.ChuckNorrisAPITests' tests='2' failures='0'>
-    <testcase classname='ChuckNorrisFactsTests.ChuckNorrisAPITests' name='test_restError' time='1.074'/>
-    <testcase classname='ChuckNorrisFactsTests.ChuckNorrisAPITests' name='test_textSearchAPICall' time='0.712'/>
+    <testcase classname='ChuckNorrisFactsTests.ChuckNorrisAPITests' name='test_restError' time='1.164'/>
+    <testcase classname='ChuckNorrisFactsTests.ChuckNorrisAPITests' name='test_textSearchAPICall' time='0.713'/>
   </testsuite>
   <testsuite name='ChuckNorrisFactsTests.FactsListViewTests' tests='2' failures='2'>
     <testcase classname='ChuckNorrisFactsTests.FactsListViewTests' name='test_whenError_showAlert'>
-      <failure message='failed - Snapshot comparison failed: Optional(Error Domain=FBSnapshotTestControllerErrorDomain Code=1 &quot;Unable to load reference image.&quot; UserInfo={NSLocalizedFailureReason=Reference image not found. You need to run the test in record mode, NSLocalizedDescription=Unable to load reference image., FBReferenceImageFilePathKey=/Users/pauloricardo/Library/Developer/Xcode/DerivedData/ChuckNorrisFacts-eqzammrfzrddiscimromwryhppwl/Build/Products/Debug-iphonesimulator/ChuckNorrisFacts.app/PlugIns/ChuckNorrisFactsTests.xctest/ReferenceImages_64/ChuckNorrisFactsTests.FactsListViewTests/test_whenError_showAlertAndReturnError_@3x.png})'>ChuckNorrisFactsTests/FactsListViewSpec.swift:50</failure>
+      <failure message='failed - Snapshot comparison failed: Optional(Error Domain=FBSnapshotTestControllerErrorDomain Code=1 &quot;Unable to load reference image.&quot; UserInfo={NSLocalizedFailureReason=Reference image not found. You need to run the test in record mode, NSLocalizedDescription=Unable to load reference image., FBReferenceImageFilePathKey=/Users/pauloricardo/Library/Developer/Xcode/DerivedData/ChuckNorrisFacts-eqzammrfzrddiscimromwryhppwl/Build/Products/Debug-iphonesimulator/ChuckNorrisFacts.app/PlugIns/ChuckNorrisFactsTests.xctest/ReferenceImages_64/ChuckNorrisFactsTests.FactsListViewTests/test_whenError_showAlertAndReturnError_@3x.png})'>ChuckNorrisFactsTests/FactsListViewTests.swift:50</failure>
     </testcase>
     <testcase classname='ChuckNorrisFactsTests.FactsListViewTests' name='test_whenHasFacts_showInTable'>
-      <failure message='failed - Snapshot comparison failed: Optional(Error Domain=FBSnapshotTestControllerErrorDomain Code=1 &quot;Unable to load reference image.&quot; UserInfo={NSLocalizedFailureReason=Reference image not found. You need to run the test in record mode, NSLocalizedDescription=Unable to load reference image., FBReferenceImageFilePathKey=/Users/pauloricardo/Library/Developer/Xcode/DerivedData/ChuckNorrisFacts-eqzammrfzrddiscimromwryhppwl/Build/Products/Debug-iphonesimulator/ChuckNorrisFacts.app/PlugIns/ChuckNorrisFactsTests.xctest/ReferenceImages_64/ChuckNorrisFactsTests.FactsListViewTests/test_whenHasFacts_showInTable@3x.png})'>ChuckNorrisFactsTests/FactsListViewSpec.swift:34</failure>
+      <failure message='failed - Snapshot comparison failed: Optional(Error Domain=FBSnapshotTestControllerErrorDomain Code=1 &quot;Unable to load reference image.&quot; UserInfo={NSLocalizedFailureReason=Reference image not found. You need to run the test in record mode, NSLocalizedDescription=Unable to load reference image., FBReferenceImageFilePathKey=/Users/pauloricardo/Library/Developer/Xcode/DerivedData/ChuckNorrisFacts-eqzammrfzrddiscimromwryhppwl/Build/Products/Debug-iphonesimulator/ChuckNorrisFacts.app/PlugIns/ChuckNorrisFactsTests.xctest/ReferenceImages_64/ChuckNorrisFactsTests.FactsListViewTests/test_whenHasFacts_showInTable@3x.png})'>ChuckNorrisFactsTests/FactsListViewTests.swift:34</failure>
     </testcase>
   </testsuite>
   <testsuite name='ChuckNorrisFactsTests.ReactiveUITests' tests='2' failures='0'>
     <testcase classname='ChuckNorrisFactsTests.ReactiveUITests' name='test_biggerFontAccordingToTextSize' time='0.004'/>
-    <testcase classname='ChuckNorrisFactsTests.ReactiveUITests' name='test_smallerFontAccordingToTextSize' time='0.003'/>
+    <testcase classname='ChuckNorrisFactsTests.ReactiveUITests' name='test_smallerFontAccordingToTextSize' time='0.004'/>
   </testsuite>
   <testsuite name='ChuckNorrisFactsTests.TextSearchViewModelTests' tests='1' failures='0'>
     <testcase classname='ChuckNorrisFactsTests.TextSearchViewModelTests' name='test_searchedFacts' time='0.002'/>

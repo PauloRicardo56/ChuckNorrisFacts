@@ -27,7 +27,7 @@
 		234CA56125A001E500637F3A /* 04B_30.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 234CA52D259FFEFC00637F3A /* 04B_30.ttf */; };
 		234CA56F25A104D900637F3A /* CellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CA56E25A104D900637F3A /* CellBuilder.swift */; };
 		23514B342596833E00620D74 /* ErrorMessageAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23514B332596833E00620D74 /* ErrorMessageAlert.swift */; };
-		2356599B25A24BC1003FC26B /* FactsListViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2356599A25A24BC1003FC26B /* FactsListViewSpec.swift */; };
+		2356599B25A24BC1003FC26B /* FactsListViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2356599A25A24BC1003FC26B /* FactsListViewTests.swift */; };
 		237404EC25A222C300588117 /* ChuckNorrisAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237404EB25A222C300588117 /* ChuckNorrisAPI.swift */; };
 		237404F125A2242A00588117 /* ChuckNorrisAPIMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237404F025A2242A00588117 /* ChuckNorrisAPIMock.swift */; };
 		237404F625A2252D00588117 /* Search+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237404F525A2252D00588117 /* Search+Stub.swift */; };
@@ -95,7 +95,7 @@
 		234CA56E25A104D900637F3A /* CellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellBuilder.swift; sourceTree = "<group>"; };
 		23514B232594FAAE00620D74 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		23514B332596833E00620D74 /* ErrorMessageAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageAlert.swift; sourceTree = "<group>"; };
-		2356599A25A24BC1003FC26B /* FactsListViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsListViewSpec.swift; sourceTree = "<group>"; };
+		2356599A25A24BC1003FC26B /* FactsListViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsListViewTests.swift; sourceTree = "<group>"; };
 		237404EB25A222C300588117 /* ChuckNorrisAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuckNorrisAPI.swift; sourceTree = "<group>"; };
 		237404F025A2242A00588117 /* ChuckNorrisAPIMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuckNorrisAPIMock.swift; sourceTree = "<group>"; };
 		237404F525A2252D00588117 /* Search+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Search+Stub.swift"; sourceTree = "<group>"; };
@@ -228,19 +228,14 @@
 		23238D7C25910EAB00DB3FC0 /* ChuckNorrisFacts */ = {
 			isa = PBXGroup;
 			children = (
-				234CA52C259FFE8800637F3A /* Fonts */,
+				2377543625A3844D00F7E1BA /* Application */,
 				23EA8200259157E100DF4B09 /* Utils */,
 				23238DB625911D7800DB3FC0 /* ChuckNorrisAPI */,
 				2311C84C2591233A00128535 /* Models */,
 				2311C85725914EFC00128535 /* Views */,
 				2311C85B2591506200128535 /* View Controllers */,
 				2311C85C2591507D00128535 /* View Models */,
-				23EA82472592F10F00DF4B09 /* AppCoordinator.swift */,
-				23238D7D25910EAB00DB3FC0 /* AppDelegate.swift */,
-				23238D7F25910EAB00DB3FC0 /* SceneDelegate.swift */,
-				23238D8625910EAD00DB3FC0 /* Assets.xcassets */,
-				23238D8825910EAD00DB3FC0 /* LaunchScreen.storyboard */,
-				23238D8B25910EAD00DB3FC0 /* Info.plist */,
+				2377543825A3848C00F7E1BA /* Resources */,
 			);
 			path = ChuckNorrisFacts;
 			sourceTree = "<group>";
@@ -250,10 +245,10 @@
 			children = (
 				2374050525A22E2E00588117 /* Stubs */,
 				23EA82812594231E00DF4B09 /* Mocks */,
-				23EA82242592B2DD00DF4B09 /* ChuckNorrisAPITests.swift */,
+				2356599A25A24BC1003FC26B /* FactsListViewTests.swift */,
 				23EA82342592B85800DF4B09 /* TextSearchViewModelTests.swift */,
+				23EA82242592B2DD00DF4B09 /* ChuckNorrisAPITests.swift */,
 				23EA82772594163900DF4B09 /* ReactiveUITests.swift */,
-				2356599A25A24BC1003FC26B /* FactsListViewSpec.swift */,
 				23238D9625910EAE00DB3FC0 /* Info.plist */,
 			);
 			path = ChuckNorrisFactsTests;
@@ -304,6 +299,26 @@
 			path = Stubs;
 			sourceTree = "<group>";
 		};
+		2377543625A3844D00F7E1BA /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				23EA82472592F10F00DF4B09 /* AppCoordinator.swift */,
+				23238D7D25910EAB00DB3FC0 /* AppDelegate.swift */,
+				23238D7F25910EAB00DB3FC0 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		2377543825A3848C00F7E1BA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				23238D8625910EAD00DB3FC0 /* Assets.xcassets */,
+				23238D8825910EAD00DB3FC0 /* LaunchScreen.storyboard */,
+				23238D8B25910EAD00DB3FC0 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		23A76269259E4A900060FD83 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +332,7 @@
 		23EA8200259157E100DF4B09 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				234CA52C259FFE8800637F3A /* Fonts */,
 				23EA8201259157E900DF4B09 /* ViewCoding.swift */,
 				23EA827C2594220900DF4B09 /* ReactiveUI.swift */,
 				234CA51A259E546000637F3A /* Colors.swift */,
@@ -636,7 +652,7 @@
 			files = (
 				23EA82782594163900DF4B09 /* ReactiveUITests.swift in Sources */,
 				23EA82252592B2DD00DF4B09 /* ChuckNorrisAPITests.swift in Sources */,
-				2356599B25A24BC1003FC26B /* FactsListViewSpec.swift in Sources */,
+				2356599B25A24BC1003FC26B /* FactsListViewTests.swift in Sources */,
 				23F6766C25A2804000DCB4CA /* FactSearchViewModelMock.swift in Sources */,
 				237404F625A2252D00588117 /* Search+Stub.swift in Sources */,
 				237404F125A2242A00588117 /* ChuckNorrisAPIMock.swift in Sources */,
@@ -807,7 +823,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CG83DPH532;
-				INFOPLIST_FILE = ChuckNorrisFacts/Info.plist;
+				INFOPLIST_FILE = ChuckNorrisFacts/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -816,7 +832,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pauloricardo.ChuckNorrisFacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -828,7 +844,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CG83DPH532;
-				INFOPLIST_FILE = ChuckNorrisFacts/Info.plist;
+				INFOPLIST_FILE = ChuckNorrisFacts/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -837,7 +853,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pauloricardo.ChuckNorrisFacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

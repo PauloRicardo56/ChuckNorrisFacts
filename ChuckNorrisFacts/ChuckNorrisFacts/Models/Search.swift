@@ -16,7 +16,3 @@ class Search: Codable {
         self.result = result
     }
 }
-
-extension Search {
-    static let empty = Search(total: 0, result: [])
-}

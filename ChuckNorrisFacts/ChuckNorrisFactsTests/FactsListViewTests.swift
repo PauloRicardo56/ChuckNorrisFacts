@@ -1,5 +1,5 @@
 //
-//  FactsListViewSpec.swift
+//  FactsListViewTests.swift
 //  ChuckNorrisFactsTests
 //
 //  Created by Paulo Ricardo on 03/01/21.
