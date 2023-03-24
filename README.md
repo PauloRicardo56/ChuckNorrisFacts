@@ -10,7 +10,7 @@
 
 ### UI
 - Color palette was chosen over the API logo.
-- Fonts used were based on the ones used in the API documentationPI
+- Fonts used were based on the ones used in the API documentation.
 
 ### Do not insert Pods/ in .gitignore
 - The machine that will run the project doesn't need to have CocoaPods installed.
